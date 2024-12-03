@@ -3,10 +3,7 @@ import torch
 from transformers import (
     AutoProcessor,
     LlavaForConditionalGeneration,
-    LlavaProcessor,
-    LlamaTokenizerFast,
-    LlamaModel,
-    LlamaForCausalLM,
+    LlavaProcessor
 )
 
 
