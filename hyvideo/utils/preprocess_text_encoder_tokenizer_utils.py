@@ -3,13 +3,12 @@ import torch
 from transformers import (
     AutoProcessor,
     LlavaForConditionalGeneration,
-    LlavaProcessor
 )
 
 
 def preprocess_text_encoder_tokenizer(args):
 
-    processor: LlavaProcessor = AutoProcessor.from_pretrained(args.input_dir)
+    processor = AutoProcessor.from_pretrained(args.input_dir)
     model = LlavaForConditionalGeneration.from_pretrained(
         args.input_dir,
         torch_dtype=torch.float16,
