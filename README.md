@@ -3,7 +3,7 @@
 [中文阅读](./README_zh.md)
 
 <p align="center">
-  <img src="assets/logo.png"  height=100>
+  <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/logo.png"  height=100>
 </p>
 
 # HunyuanVideo: A Systematic Framework For Large Video Generation Model Training
@@ -84,7 +84,7 @@ using a large language model, and used as the condition. Gaussian noise and cond
 input, our generate model generates an output latent, which is decoded to images or videos through
 the 3D VAE decoder.
 <p align="center">
-  <img src="assets/overall.png"  height=300>
+  <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/overall.png"  height=300>
 </p>
 
 ## 🎉 **HunyuanVideo Key Features**
@@ -96,7 +96,7 @@ tokens and feed them into subsequent Transformer blocks for effective multimodal
 This design captures complex interactions between visual and semantic information, enhancing
 overall model performance.
 <p align="center">
-  <img src="assets/backbone.png"  height=350>
+  <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/backbone.png"  height=350>
 </p>
 
 ### **MLLM Text Encoder**
@@ -104,13 +104,13 @@ Some previous text-to-video model typically use pretrained CLIP and T5-XXL as te
 Compared with CLIP, MLLM has been demonstrated superior ability in image detail description
 and complex reasoning; (iii) MLLM can play as a zero-shot learner by following system instructions prepended to user prompts, helping text features pay more attention to key information. In addition, MLLM is based on causal attention while T5-XXL utilizes bidirectional attention that produces better text guidance for diffusion models. Therefore, we introduce an extra bidirectional token refiner for enhacing text features.
 <p align="center">
-  <img src="assets/text_encoder.png"  height=275>
+  <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/text_encoder.png"  height=275>
 </p>
 
 ### **3D VAE**
 HunyuanVideo trains a 3D VAE with CausalConv3D to compress pixel-space videos and images into a compact latent space. We set the compression ratios of video length, space and channel to 4, 8 and 16 respectively. This can significantly reduce the number of tokens for the subsequent diffusion transformer model, allowing us to train videos at the original resolution and frame rate.
 <p align="center">
-  <img src="assets/3dvae.png"  height=150>
+  <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/3dvae.png"  height=150>
 </p>
 
 ### **Prompt Rewrite**
