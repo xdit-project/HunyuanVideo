@@ -252,11 +252,10 @@ We list some more useful configurations for easy usage:
 |       `--prompt`       |   None    |   The text prompt for video generation    |
 |     `--video-size`     | 720 1280  |      The size of the generated video      |
 |    `--video-length`    |    129    |     The length of the generated video     |
-|    `--infer-steps`     |    30     |     The number of steps for sampling      |
+|    `--infer-steps`     |    50     |     The number of steps for sampling      |
 | `--embedded-cfg-scale` |    6.0    |    Embeded  Classifier free guidance scale       |
-|     `--flow-shift`     |    9.0    | Shift factor for flow matching schedulers |
+|     `--flow-shift`     |    7.0    | Shift factor for flow matching schedulers |
 |     `--flow-reverse`   |    False  | If reverse, learning/sampling from t=1 -> t=0 |
-|     `--neg-prompt`     |   None    | The negative prompt for video generation  |
 |        `--seed`        |     0     |   The random seed for generating video    |
 |  `--use-cpu-offload`   |   False   |    Use CPU offload for the model load to save more memory, necessary for high-res video generation    |
 |     `--save-path`      | ./results |     Path to save the generated video      |
