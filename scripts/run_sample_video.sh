@@ -6,7 +6,8 @@ python3 sample_video.py \
     --video-length 129 \
     --prompt "A cat walks on the grass, realistic style." \
     --embedded-cfg-scale 6.0 \
-    --infer-steps 30 \
+    --infer-steps 50 \
+    --flow-shift 7.0 \
     --flow-reverse \
     --seed 0 \
     --use-cpu-offload \
