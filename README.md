@@ -9,7 +9,7 @@
 <div align="center">
   <a href="https://github.com/Tencent/HunyuanVideo"><img src="https://img.shields.io/static/v1?label=HunyuanVideo Code&message=Github&color=blue&logo=github-pages"></a> &ensp;
   <a href="https://aivideo.hunyuan.tencent.com"><img src="https://img.shields.io/static/v1?label=Project%20Page&message=Github&color=blue&logo=github-pages"></a> &ensp;
-  <a href="https://arxiv.org/abs/2405.08748"><img src="https://img.shields.io/static/v1?label=Tech Report&message=Arxiv:HunyuanVideo&color=red&logo=arxiv"></a> &ensp;
+  <a href="https://github.com/Tencent/HunyuanVideo/blob/main/assets/hunyuanvideo.pdf"><img src="https://img.shields.io/static/v1?label=Tech Report&message=Arxiv:HunyuanVideo&color=red&logo=arxiv"></a> &ensp;
   <a href="https://huggingface.co/tencent/HunyuanVideo"><img src="https://img.shields.io/static/v1?label=HunyuanVideo&message=HuggingFace&color=yellow"></a> &ensp; &ensp;
   <a href="https://huggingface.co/tencent/HunyuanVideo-PromptRewrite"><img src="https://img.shields.io/static/v1?label=HunyuanVideo-PromptRewrite&message=HuggingFace&color=yellow"></a> &ensp; &ensp;
 </div>
@@ -18,11 +18,11 @@
 
 This repo contains PyTorch model definitions, pre-trained weights and inference/sampling code for our paper exploring HunyuanVideo. You can find more visualizations on our [project page](https://aivideo.hunyuan.tencent.com).
 
-> [**HunyuanVideo: A Systematic Framework For Large Video Generation Model Training**](https://arxiv.org/abs/2405.08748) <br>
+> [**HunyuanVideo: A Systematic Framework For Large Video Generation Model Training**](https://github.com/Tencent/HunyuanVideo/blob/main/assets/hunyuanvideo.pdf) <br>
 
 ## 🎥 Demo
 <div align="center">
-  <video src="https://github.com/user-attachments/assets/f37925a3-7d42-40c9-8a9b-5a010c7198e2" width="100%">
+  <video src="https://github.com/user-attachments/assets/f37925a3-7d42-40c9-8a9b-5a010c7198e2" width="50%">
 </div>
 
 Due to the limitation of github page, the video is compressed. The original video can be downloaded from [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
@@ -263,14 +263,13 @@ We list some more useful configurations for easy usage:
 
 
 ## 🔗 BibTeX
-If you find [HunyuanVideo](https://arxiv.org/abs/2405.08748) useful for your research and applications, please cite using this BibTeX:
+If you find [HunyuanVideo](https://github.com/Tencent/HunyuanVideo/blob/main/assets/hunyuanvideo.pdf) useful for your research and applications, please cite using this BibTeX:
 
 ```BibTeX
-@misc{XX,
-      title={HunyuanVideo: A Systematic Framework For Large Video Generation Model Training}, 
-      author={Hunyuan Foundation Model Team},
-      year={2025},
-      eprint={XXX},
+@misc{kong2024hunyuanvideo,
+      title={HunyuanVideo: A Systematic Framework For Large Video Generative Models}, 
+      author={Weijie Kong, Zijian Zhang, Rox Min, Zuozhuo Dai, Jin Zhou, Jiangfeng Xiong, Xin Li, Bo Wu, Qi Tian, Jianwei Zhang, Kathrina Wu, Qin Lin, Yangyu Tao, Qinglin Lu, Songtao Liu, Dax Zhou, Hongfa Wang, Yong Yang, Di Wang, Yuhong Liu, Jie Jiang, Caesar Zhong},
+      year={2024},
       archivePrefix={arXiv},
       primaryClass={cs.CV}
 }
