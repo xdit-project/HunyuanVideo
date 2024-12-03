@@ -235,7 +235,7 @@ python3 sample_video.py \
     --video-size 720 1280 \
     --video-length 129 \
     --infer-steps 30 \
-    --prompt "a cat is running, realistic." \
+    --prompt "A cat walks on the grass, realistic style." \
     --flow-reverse \
     --seed 0 \
     --use-cpu-offload \
