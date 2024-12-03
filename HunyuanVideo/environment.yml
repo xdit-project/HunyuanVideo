@@ -1,0 +1,8 @@
+name: HunyuanVideo
+channels:
+  - pytorch
+  - nvidia
+dependencies:
+  - python=3.8.12
+  - pytorch=2.1.1
+  - pip
