@@ -157,8 +157,8 @@ To evaluate the performance of HunyuanVideo, we selected five strong baselines f
 
 The following table shows the requirements for running HunyuanVideo model (batch size = 1) to generate videos:
 
-|     Model       Setting<br/>(height/width/frame) | Denoising step | GPU Peak Memory  |
-|:-------------:|:--------------------------------:|:--------------:|:----------------:|
+|     Model    |  Setting<br/>(height/width/frame) | Denoising step | GPU Peak Memory  |
+|:------------:|:--------------------------------:|:--------------:|:----------------:|
 | HunyuanVideo   |        720px1280px129f          |       30       |       60G        |
 | HunyuanVideo   |        544px960px129f           |       30       |       45G        |
 
