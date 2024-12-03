@@ -25,7 +25,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
   <video src="https://github.com/user-attachments/assets/f37925a3-7d42-40c9-8a9b-5a010c7198e2" width="50%">
 </div>
 
-Due to the limitation of github page, the video is compressed. The original video can be downloaded from [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
+The video is heavily compressed due to complaince of GitHub policy. The high quality version can be downloaded from here. [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
 
 ## 🔥🔥🔥 News!!
 * Dec 3, 2024: 🤗 We release the inference code and model weights of HunyuanVideo.
