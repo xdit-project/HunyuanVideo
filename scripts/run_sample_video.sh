@@ -9,6 +9,5 @@ python3 sample_video.py \
     --infer-steps 50 \
     --flow-shift 7.0 \
     --flow-reverse \
-    --seed 0 \
     --use-cpu-offload \
     --save-path ./results \
