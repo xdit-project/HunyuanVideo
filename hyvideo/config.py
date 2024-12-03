@@ -185,7 +185,7 @@ def add_denoise_schedule_args(parser: argparse.ArgumentParser):
     group.add_argument(
         "--flow-shift",
         type=float,
-        default=9.0,
+        default=7.0,
         help="Shift factor for flow matching schedulers.",
     )
     group.add_argument(
@@ -264,7 +264,7 @@ def add_inference_args(parser: argparse.ArgumentParser):
     group.add_argument(
         "--infer-steps",
         type=int,
-        default=30,
+        default=50,
         help="Number of denoising steps for inference.",
     )
     group.add_argument(
