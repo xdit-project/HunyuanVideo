@@ -198,7 +198,7 @@ python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.5.
 ```
 
 Additionally, HunyuanVideo also provides a pre-built Docker image:
-[docker_hunyuanvideo](https://hub.docker.com/repository/docker/hunyuanvideo/hunyuanvideo/general). 
+[docker_hunyuanvideo](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/hunyuan_video_cu12.tar). 
 
 ```shell
 # 1. Use the following link to download the docker image tar file (For CUDA 12).
