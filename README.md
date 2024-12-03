@@ -1,5 +1,7 @@
 <!-- ## **HunyuanVideo** -->
 
+[中文阅读](./README_zh.md)
+
 <p align="center">
   <img src="assets/logo.png"  height=100>
 </p>
@@ -8,7 +10,8 @@
 
 <div align="center">
   <a href="https://github.com/Tencent/HunyuanVideo"><img src="https://img.shields.io/static/v1?label=HunyuanVideo Code&message=Github&color=blue&logo=github-pages"></a> &ensp;
-  <a href="https://aivideo.hunyuan.tencent.com"><img src="https://img.shields.io/static/v1?label=Project%20Page&message=Github&color=blue&logo=github-pages"></a> &ensp;
+  <a href="https://aivideo.hunyuan.tencent.com"><img src="https://img.shields.io/static/v1?label=Project%20Page&message=Web&color=green&logo=github-pages"></a> &ensp;
+  <a href="https://video.hunyuan.tencent.com"><img src="https://img.shields.io/static/v1?label=Playground&message=Web&color=green&logo=github-pages"></a> &ensp;
   <a href="https://github.com/Tencent/HunyuanVideo/blob/main/assets/hunyuanvideo.pdf"><img src="https://img.shields.io/static/v1?label=Tech Report&message=Arxiv:HunyuanVideo&color=red&logo=arxiv"></a> &ensp;
   <a href="https://huggingface.co/tencent/HunyuanVideo"><img src="https://img.shields.io/static/v1?label=HunyuanVideo&message=HuggingFace&color=yellow"></a> &ensp; &ensp;
   <a href="https://huggingface.co/tencent/HunyuanVideo-PromptRewrite"><img src="https://img.shields.io/static/v1?label=HunyuanVideo-PromptRewrite&message=HuggingFace&color=yellow"></a> &ensp; &ensp;
@@ -25,7 +28,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
   <video src="https://github.com/user-attachments/assets/f37925a3-7d42-40c9-8a9b-5a010c7198e2" width="50%">
 </div>
 
-The video is heavily compressed due to complaince of GitHub policy. The high quality version can be downloaded from here. [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
+The video is heavily compressed due to complaince of GitHub policy. The high quality version can be downloaded from [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
 
 ## 🔥🔥🔥 News!!
 * Dec 3, 2024: 🤗 We release the inference code and model weights of HunyuanVideo.
@@ -50,7 +53,7 @@ The video is heavily compressed due to complaince of GitHub policy. The high qua
   - [📑 Open-source Plan](#-open-source-plan)
   - [Contents](#contents)
   - [**Abstract**](#abstract)
-  - [**HunyuanVideo Overall Architechture**](#-hunyuanvideo-overall-architechture)
+  - [**HunyuanVideo Overall Architecture**](#-hunyuanvideo-overall-architecture)
   - [🎉 **HunyuanVideo Key Features**](#-hunyuanvideo-key-features)
     - [**Unified Image and Video Generative Architecture**](#unified-image-and-video-generative-architecture)
     - [**MLLM Text Encoder**](#mllm-text-encoder)
@@ -65,15 +68,15 @@ The video is heavily compressed due to complaince of GitHub policy. The high qua
     - [Using Command Line](#using-command-line)
     - [More Configurations](#more-configurations)
   - [🔗 BibTeX](#-bibtex)
-  - [Acknowledgements](#-acknowledgements)
+  - [Acknowledgements](#acknowledgements)
 ---
 
 ## **Abstract**
-We present HunyuanVideo, a novel open-source video foundation model that exhibits performance in video generation that is comparable to, if not superior to, leading closed-source models. HunyuanVideo features a comprehensive framework that integrates several key contributions, including data curation, image-video joint model training, and an efficient infrastructure designed to facilitate large-scale model training and inference. Additionally, through an effective strategy for scaling model architecture and dataset, we successfully trained a video generative model with over 13 billion parameters, making it the largest among all open-source models. 
+We present HunyuanVideo, a novel open-source video foundation model that exhibits performance in video generation that is comparable to, if not superior to, leading closed-source models. In order to train HunyuanVideo model, we adopt several key technologies for model learning, including data curation, image-video joint model training, and an efficient infrastructure designed to facilitate large-scale model training and inference. Additionally, through an effective strategy for scaling model architecture and dataset, we successfully trained a video generative model with over 13 billion parameters, making it the largest among all open-source models. 
 
 We conducted extensive experiments and implemented a series of targeted designs to ensure high visual quality, motion diversity, text-video alignment, and generation stability. According to professional human evaluation results, HunyuanVideo outperforms previous state-of-the-art models, including Runway Gen-3, Luma 1.6, and 3 top performing Chinese video generative models. By releasing the code and weights of the foundation model and its applications, we aim to bridge the gap between closed-source and open-source video foundation models. This initiative will empower everyone in the community to experiment with their ideas, fostering a more dynamic and vibrant video generation ecosystem. 
 
-## **HunyuanVideo Overall Architechture**
+## **HunyuanVideo Overall Architecture**
 
 HunyuanVideo is trained on a spatial-temporally
 compressed latent space, which is compressed through Causal 3D VAE. Text prompts are encoded
@@ -97,7 +100,7 @@ overall model performance.
 </p>
 
 ### **MLLM Text Encoder**
-Some previous text-to-video model typically use pretrainednCLIP and T5-XXL as text encoders where CLIP uses Transformer Encoder and T5 uses a Encoder-Decoder structure. In constrast, we utilize a pretrained Multimodal Large Language Model (MLLM) with a Decoder-Only structure as our text encoder, which has following advantages: (i) Compared with T5, MLLM after visual instruction finetuning has better image-text alignment in the feature space, which alleviates the difficulty of instruction following in diffusion models; (ii)
+Some previous text-to-video model typically use pretrained CLIP and T5-XXL as text encoders where CLIP uses Transformer Encoder and T5 uses a Encoder-Decoder structure. In constrast, we utilize a pretrained Multimodal Large Language Model (MLLM) with a Decoder-Only structure as our text encoder, which has following advantages: (i) Compared with T5, MLLM after visual instruction finetuning has better image-text alignment in the feature space, which alleviates the difficulty of instruction following in diffusion models; (ii)
 Compared with CLIP, MLLM has been demonstrated superior ability in image detail description
 and complex reasoning; (iii) MLLM can play as a zero-shot learner by following system instructions prepended to user prompts, helping text features pay more attention to key information. In addition, MLLM is based on causal attention while T5-XXL utilizes bidirectional attention that produces better text guidance for diffusion models. Therefore, we introduce an extra bidirectional token refiner for enhacing text features.
 <p align="center">
@@ -119,7 +122,7 @@ The Prompt Rewrite Model can be directly deployed and inferred using the [Hunyua
 
 ## 📈 Comparisons
 
-To evaluate the performance of HunyuanVideo, we selected five strong baselines from closed-source video generation models. In total, we utilized 1,533 text prompts, generating an equal number of video samples with HunyuanVideo in a single run. For a fair comparison, we conducted inference only once, avoiding any cherry-picking of results. When comparing with the baseline methods, we maintained the default settings for all selected models, ensuring consistent video resolution. Videos were assessed based on three criteria: Text Alignment, Motion Quality and Visual Quality. More than 60 professional evaluators performed the evaluation. Notably, HunyuanVideo demonstrated the best overall performance, particularly excelling in motion quality.
+To evaluate the performance of HunyuanVideo, we selected five strong baselines from closed-source video generation models. In total, we utilized 1,533 text prompts, generating an equal number of video samples with HunyuanVideo in a single run. For a fair comparison, we conducted inference only once, avoiding any cherry-picking of results. When comparing with the baseline methods, we maintained the default settings for all selected models, ensuring consistent video resolution. Videos were assessed based on three criteria: Text Alignment, Motion Quality, and Visual Quality. More than 60 professional evaluators performed the evaluation. Notably, HunyuanVideo demonstrated the best overall performance, particularly excelling in motion quality. Please note that the evaluation is based on Hunyuan Video's high-quality version. This is different from the currently released fast version.
 
 <p align="center">
 <table> 
@@ -156,12 +159,10 @@ To evaluate the performance of HunyuanVideo, we selected five strong baselines f
 
 The following table shows the requirements for running HunyuanVideo model (batch size = 1) to generate videos:
 
-|     Model      | GPU  | Setting<br/>(height/width/frame) | Denoising step | GPU Peak Memory  |
-|:--------------:|:----:|:--------------------------------:|:--------------:|:----------------:|
-| HunyuanVideo   | H800 |         720px1280px129f          |       30       |       60G        |
-| HunyuanVideo   | H800 |          544px960px129f          |       30       |       45G        |
-| HunyuanVideo   | H20  |         720px1280px129f          |       30       |       60G        |
-| HunyuanVideo   | H20  |          544px960px129f          |       30       |       45G        |
+|     Model    |  Setting<br/>(height/width/frame) | Denoising step | GPU Peak Memory  |
+|:------------:|:--------------------------------:|:--------------:|:----------------:|
+| HunyuanVideo   |        720px1280px129f          |       30       |       60G        |
+| HunyuanVideo   |        544px960px129f           |       30       |       45G        |
 
 * An NVIDIA GPU with CUDA support is required. 
   * We have tested on a single H800/H20 GPU.
@@ -198,8 +199,8 @@ python -m pip install -r requirements.txt
 python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.5.9.post1
 ```
 
-Additionally, to simplify the training process, HunyuanVideo also provides a pre-built Docker image:
-[docker_hunyuanvideo](https://hub.docker.com/repository/docker/hunyuanvideo/hunyuanvideo/general). 
+Additionally, HunyuanVideo also provides a pre-built Docker image:
+[docker_hunyuanvideo](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/hunyuan_video_cu12.tar). 
 
 ```shell
 # 1. Use the following link to download the docker image tar file (For CUDA 12).
@@ -235,8 +236,8 @@ cd HunyuanVideo
 python3 sample_video.py \
     --video-size 720 1280 \
     --video-length 129 \
-    --infer-steps 30 \
-    --prompt "a cat is running, realistic." \
+    --infer-steps 50 \
+    --prompt "A cat walks on the grass, realistic style." \
     --flow-reverse \
     --use-cpu-offload \
     --save-path ./results
@@ -251,11 +252,10 @@ We list some more useful configurations for easy usage:
 |       `--prompt`       |   None    |   The text prompt for video generation    |
 |     `--video-size`     | 720 1280  |      The size of the generated video      |
 |    `--video-length`    |    129    |     The length of the generated video     |
-|    `--infer-steps`     |    30     |     The number of steps for sampling      |
+|    `--infer-steps`     |    50     |     The number of steps for sampling      |
 | `--embedded-cfg-scale` |    6.0    |    Embeded  Classifier free guidance scale       |
-|     `--flow-shift`     |    9.0    | Shift factor for flow matching schedulers |
+|     `--flow-shift`     |    7.0    | Shift factor for flow matching schedulers |
 |     `--flow-reverse`   |    False  | If reverse, learning/sampling from t=1 -> t=0 |
-|     `--neg-prompt`     |   None    | The negative prompt for video generation  |
 |        `--seed`        |     None  |   The random seed for generating video, if None, we init a random sedd    |
 |  `--use-cpu-offload`   |   False   |    Use CPU offload for the model load to save more memory, necessary for high-res video generation    |
 |     `--save-path`      | ./results |     Path to save the generated video      |
@@ -267,7 +267,7 @@ If you find [HunyuanVideo](https://github.com/Tencent/HunyuanVideo/blob/main/ass
 ```BibTeX
 @misc{kong2024hunyuanvideo,
       title={HunyuanVideo: A Systematic Framework For Large Video Generative Models}, 
-      author={Weijie Kong, Zijian Zhang, Rox Min, Zuozhuo Dai, Jin Zhou, Jiangfeng Xiong, Xin Li, Bo Wu, Qi Tian, Jianwei Zhang, Kathrina Wu, Qin Lin, Yangyu Tao, Qinglin Lu, Songtao Liu, Dax Zhou, Hongfa Wang, Yong Yang, Di Wang, Yuhong Liu, Jie Jiang, Caesar Zhong},
+      author={Weijie Kong, Qi Tian, Zijian Zhang, Rox Min, Zuozhuo Dai, Jin Zhou, Jiangfeng Xiong, Xin Li, Bo Wu, Jianwei Zhang, Kathrina Wu, Qin Lin, Aladdin Wang, Andong Wang, Changlin Li, Duojun Huang, Fang Yang, Hao Tan, Hongmei Wang, Jacob Song, Jiawang Bai, Jianbing Wu, Jinbao Xue, Joey Wang, Junkun Yuan, Kai Wang, Mengyang Liu, Pengyu Li, Shuai Li, Weiyan Wang, Wenqing Yu, Xinchi Deng, Yang Li, Yanxin Long, Yi Chen, Yutao Cui, Yuanbo Peng, Zhentao Yu, Zhiyu He, Zhiyong Xu, Zixiang Zhou, Zunnan Xu, Yangyu Tao, Qinglin Lu, Songtao Liu, Dax Zhou, Hongfa Wang, Yong Yang, Di Wang, Yuhong Liu, and Jie Jiang, along with Caesar Zhong},
       year={2024},
       archivePrefix={arXiv},
       primaryClass={cs.CV}
@@ -277,3 +277,12 @@ If you find [HunyuanVideo](https://github.com/Tencent/HunyuanVideo/blob/main/ass
 ## Acknowledgements
 We would like to thank the contributors to the [SD3](https://huggingface.co/stabilityai/stable-diffusion-3-medium), [FLUX](https://github.com/black-forest-labs/flux), [Llama](https://github.com/meta-llama/llama), [LLaVA](https://github.com/haotian-liu/LLaVA), [Xtuner](https://github.com/InternLM/xtuner), [diffusers](https://github.com/huggingface/diffusers) and [huggingface](https://huggingface.co) repositories, for their open research and exploration.
 Additionally, we also thank the Tencent Hunyuan Multimodal team for their help with the text encoder. 
+
+## Star History
+<a href="https://star-history.com/#Tencent/HunyuanVideo&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Tencent/HunyuanVideo&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Tencent/HunyuanVideo&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Tencent/HunyuanVideo&type=Date" />
+ </picture>
+</a>

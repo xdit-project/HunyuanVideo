@@ -39,8 +39,9 @@ def load_vae(vae_type: str="884-16c-hy",
     ckpt = torch.load(vae_ckpt, map_location=vae.device)
     if "state_dict" in ckpt:
         ckpt = ckpt["state_dict"]
-    vae_ckpt = {k.replace("vae.", ""): v for k, v in ckpt.items() if k.startswith("vae.")}
-    vae.load_state_dict(vae_ckpt)
+    if any(k.startswith("vae.") for k in ckpt.keys()):
+        ckpt = {k.replace("vae.", ""): v for k, v in ckpt.items() if k.startswith("vae.")}
+    vae.load_state_dict(ckpt)
 
     spatial_compression_ratio = vae.config.spatial_compression_ratio
     time_compression_ratio = vae.config.time_compression_ratio
