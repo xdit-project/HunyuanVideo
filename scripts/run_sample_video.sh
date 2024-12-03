@@ -8,6 +8,5 @@ python3 sample_video.py \
     --embedded-cfg-scale 6.0 \
     --infer-steps 30 \
     --flow-reverse \
-    --seed 0 \
     --use-cpu-offload \
     --save-path ./results \

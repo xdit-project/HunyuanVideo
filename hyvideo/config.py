@@ -329,7 +329,7 @@ def add_inference_args(parser: argparse.ArgumentParser):
         "seed column if available, otherwise use the fixed `seed` value. `prompt` will use the "
         "fixed `seed` value.",
     )
-    group.add_argument("--seed", type=int, default=0, help="Seed for evaluation.")
+    group.add_argument("--seed", type=int, default=None, help="Seed for evaluation.")
 
     # Classifier-Free Guidance
     group.add_argument(

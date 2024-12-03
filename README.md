@@ -238,7 +238,6 @@ python3 sample_video.py \
     --infer-steps 30 \
     --prompt "a cat is running, realistic." \
     --flow-reverse \
-    --seed 0 \
     --use-cpu-offload \
     --save-path ./results
 ```
@@ -257,7 +256,7 @@ We list some more useful configurations for easy usage:
 |     `--flow-shift`     |    9.0    | Shift factor for flow matching schedulers |
 |     `--flow-reverse`   |    False  | If reverse, learning/sampling from t=1 -> t=0 |
 |     `--neg-prompt`     |   None    | The negative prompt for video generation  |
-|        `--seed`        |     0     |   The random seed for generating video    |
+|        `--seed`        |     None  |   The random seed for generating video, if None, we init a random sedd    |
 |  `--use-cpu-offload`   |   False   |    Use CPU offload for the model load to save more memory, necessary for high-res video generation    |
 |     `--save-path`      | ./results |     Path to save the generated video      |
 
