@@ -256,7 +256,7 @@ We list some more useful configurations for easy usage:
 | `--embedded-cfg-scale` |    6.0    |    Embeded  Classifier free guidance scale       |
 |     `--flow-shift`     |    7.0    | Shift factor for flow matching schedulers |
 |     `--flow-reverse`   |    False  | If reverse, learning/sampling from t=1 -> t=0 |
-|        `--seed`        |     None  |   The random seed for generating video, if None, we init a random sedd    |
+|        `--seed`        |     None  |   The random seed for generating video, if None, we init a random seed    |
 |  `--use-cpu-offload`   |   False   |    Use CPU offload for the model load to save more memory, necessary for high-res video generation    |
 |     `--save-path`      | ./results |     Path to save the generated video      |
 
