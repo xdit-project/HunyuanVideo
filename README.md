@@ -278,3 +278,14 @@ If you find [HunyuanVideo](https://github.com/Tencent/HunyuanVideo/blob/main/ass
 ## Acknowledgements
 We would like to thank the contributors to the [SD3](https://huggingface.co/stabilityai/stable-diffusion-3-medium), [FLUX](https://github.com/black-forest-labs/flux), [Llama](https://github.com/meta-llama/llama), [LLaVA](https://github.com/haotian-liu/LLaVA), [Xtuner](https://github.com/InternLM/xtuner), [diffusers](https://github.com/huggingface/diffusers) and [huggingface](https://huggingface.co) repositories, for their open research and exploration.
 Additionally, we also thank the Tencent Hunyuan Multimodal team for their help with the text encoder. 
+
+
+## Star History
+
+<a href="https://star-history.com/#Tencent/HunyuanVideo&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Tencent/HunyuanVideo&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Tencent/HunyuanVideo&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Tencent/HunyuanVideo&type=Date" />
+ </picture>
+</a>
