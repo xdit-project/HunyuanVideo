@@ -51,7 +51,7 @@ The video is heavily compressed due to complaince of GitHub policy. The high qua
   - [📑 Open-source Plan](#-open-source-plan)
   - [Contents](#contents)
   - [**Abstract**](#abstract)
-  - [**HunyuanVideo Overall Architechture**](#-hunyuanvideo-overall-architechture)
+  - [**HunyuanVideo Overall Architecture**](#-hunyuanvideo-overall-architecture)
   - [🎉 **HunyuanVideo Key Features**](#-hunyuanvideo-key-features)
     - [**Unified Image and Video Generative Architecture**](#unified-image-and-video-generative-architecture)
     - [**MLLM Text Encoder**](#mllm-text-encoder)
@@ -74,7 +74,7 @@ We present HunyuanVideo, a novel open-source video foundation model that exhibit
 
 We conducted extensive experiments and implemented a series of targeted designs to ensure high visual quality, motion diversity, text-video alignment, and generation stability. According to professional human evaluation results, HunyuanVideo outperforms previous state-of-the-art models, including Runway Gen-3, Luma 1.6, and 3 top performing Chinese video generative models. By releasing the code and weights of the foundation model and its applications, we aim to bridge the gap between closed-source and open-source video foundation models. This initiative will empower everyone in the community to experiment with their ideas, fostering a more dynamic and vibrant video generation ecosystem. 
 
-## **HunyuanVideo Overall Architechture**
+## **HunyuanVideo Overall Architecture**
 
 HunyuanVideo is trained on a spatial-temporally
 compressed latent space, which is compressed through Causal 3D VAE. Text prompts are encoded
