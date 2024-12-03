@@ -9,6 +9,7 @@
 <div align="center">
   <a href="https://github.com/Tencent/HunyuanVideo"><img src="https://img.shields.io/static/v1?label=HunyuanVideo Code&message=Github&color=blue&logo=github-pages"></a> &ensp;
   <a href="https://aivideo.hunyuan.tencent.com"><img src="https://img.shields.io/static/v1?label=Project%20Page&message=Web&color=green&logo=github-pages"></a> &ensp;
+  <a href="https://video.hunyuan.tencent.com"><img src="https://img.shields.io/static/v1?label=Playground&message=Web&color=green&logo=github-pages"></a> &ensp;
   <a href="https://github.com/Tencent/HunyuanVideo/blob/main/assets/hunyuanvideo.pdf"><img src="https://img.shields.io/static/v1?label=Tech Report&message=Arxiv:HunyuanVideo&color=red&logo=arxiv"></a> &ensp;
   <a href="https://huggingface.co/tencent/HunyuanVideo"><img src="https://img.shields.io/static/v1?label=HunyuanVideo&message=HuggingFace&color=yellow"></a> &ensp; &ensp;
   <a href="https://huggingface.co/tencent/HunyuanVideo-PromptRewrite"><img src="https://img.shields.io/static/v1?label=HunyuanVideo-PromptRewrite&message=HuggingFace&color=yellow"></a> &ensp; &ensp;
@@ -198,7 +199,7 @@ python -m pip install -r requirements.txt
 python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.5.9.post1
 ```
 
-Additionally, to simplify the training process, HunyuanVideo also provides a pre-built Docker image:
+Additionally, HunyuanVideo also provides a pre-built Docker image:
 [docker_hunyuanvideo](https://hub.docker.com/repository/docker/hunyuanvideo/hunyuanvideo/general). 
 
 ```shell
@@ -268,7 +269,7 @@ If you find [HunyuanVideo](https://github.com/Tencent/HunyuanVideo/blob/main/ass
 ```BibTeX
 @misc{kong2024hunyuanvideo,
       title={HunyuanVideo: A Systematic Framework For Large Video Generative Models}, 
-      author={Weijie Kong, Qi Tian, Zijian Zhang, Rox Min, Zuozhuo Dai, Jin Zhou, Jiangfeng Xiong, Xin Li, Bo Wu, Jianwei Zhang, Kathrina Wu, Qin Lin, Aladdin Wang, Andong Wang, Bai Jiawang, Changlin Li, Cui, Yutao, Deng, Xinchi, Fang Yang, Hao Tan, He, Zhiyu, Huang, Duojun, Jacob Song, Jinbao Xue, Junkun Yuan, Kai Wang, Li, Mengyang, Li, Shuai, Li, Pengyu, Lin, Long, Yanxin, Peng, Yuanbo, Wang, Weiyan, Wang, Hongmei, Wang, Joey, Wu, Jianbing, Wu, Wenqing, Wu, Yi Chen, Yu, Zhentao, Yu, Wenqing, Xu, Zhiyong, Zhou, Jin, Zhou, Zixiang, Yangyu Tao, Qinglin Lu, Songtao Liu, Dax Zhou, Hongfa Wang, Yong Yang, Di Wang, Yuhong Liu, Jie Jiang, Caesar Zhong},
+      author={Weijie Kong, Zijian Zhang, Rox Min, Zuozhuo Dai, Jin Zhou, Jiangfeng Xiong, Xin Li, Bo Wu, Qi Tian, Jianwei Zhang, Kathrina Wu, Qin Lin, Yangyu Tao, Qinglin Lu, Songtao Liu, Dax Zhou, Hongfa Wang, Yong Yang, Di Wang, Yuhong Liu, Jie Jiang, Caesar Zhong},
       year={2024},
       archivePrefix={arXiv},
       primaryClass={cs.CV}
@@ -278,14 +279,3 @@ If you find [HunyuanVideo](https://github.com/Tencent/HunyuanVideo/blob/main/ass
 ## Acknowledgements
 We would like to thank the contributors to the [SD3](https://huggingface.co/stabilityai/stable-diffusion-3-medium), [FLUX](https://github.com/black-forest-labs/flux), [Llama](https://github.com/meta-llama/llama), [LLaVA](https://github.com/haotian-liu/LLaVA), [Xtuner](https://github.com/InternLM/xtuner), [diffusers](https://github.com/huggingface/diffusers) and [huggingface](https://huggingface.co) repositories, for their open research and exploration.
 Additionally, we also thank the Tencent Hunyuan Multimodal team for their help with the text encoder. 
-
-
-## Star History
-
-<a href="https://star-history.com/#Tencent/HunyuanVideo&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Tencent/HunyuanVideo&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Tencent/HunyuanVideo&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Tencent/HunyuanVideo&type=Date" />
- </picture>
-</a>
