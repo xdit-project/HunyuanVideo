@@ -8,7 +8,7 @@
 
 <div align="center">
   <a href="https://github.com/Tencent/HunyuanVideo"><img src="https://img.shields.io/static/v1?label=HunyuanVideo Code&message=Github&color=blue&logo=github-pages"></a> &ensp;
-  <a href="https://aivideo.hunyuan.tencent.com"><img src="https://img.shields.io/static/v1?label=Project%20Page&message=Github&color=blue&logo=github-pages"></a> &ensp;
+  <a href="https://aivideo.hunyuan.tencent.com"><img src="https://img.shields.io/static/v1?label=Project%20Page&message=Web&color=green&logo=github-pages"></a> &ensp;
   <a href="https://github.com/Tencent/HunyuanVideo/blob/main/assets/hunyuanvideo.pdf"><img src="https://img.shields.io/static/v1?label=Tech Report&message=Arxiv:HunyuanVideo&color=red&logo=arxiv"></a> &ensp;
   <a href="https://huggingface.co/tencent/HunyuanVideo"><img src="https://img.shields.io/static/v1?label=HunyuanVideo&message=HuggingFace&color=yellow"></a> &ensp; &ensp;
   <a href="https://huggingface.co/tencent/HunyuanVideo-PromptRewrite"><img src="https://img.shields.io/static/v1?label=HunyuanVideo-PromptRewrite&message=HuggingFace&color=yellow"></a> &ensp; &ensp;
@@ -25,7 +25,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
   <video src="https://github.com/user-attachments/assets/f37925a3-7d42-40c9-8a9b-5a010c7198e2" width="50%">
 </div>
 
-The video is heavily compressed due to complaince of GitHub policy. The high quality version can be downloaded from here. [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
+The video is heavily compressed due to complaince of GitHub policy. The high quality version can be downloaded from [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
 
 ## 🔥🔥🔥 News!!
 * Dec 3, 2024: 🤗 We release the inference code and model weights of HunyuanVideo.
@@ -65,7 +65,7 @@ The video is heavily compressed due to complaince of GitHub policy. The high qua
     - [Using Command Line](#using-command-line)
     - [More Configurations](#more-configurations)
   - [🔗 BibTeX](#-bibtex)
-  - [Acknowledgements](#-acknowledgements)
+  - [Acknowledgements](#acknowledgements)
 ---
 
 ## **Abstract**
