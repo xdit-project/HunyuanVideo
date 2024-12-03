@@ -268,7 +268,7 @@ If you find [HunyuanVideo](https://github.com/Tencent/HunyuanVideo/blob/main/ass
 ```BibTeX
 @misc{kong2024hunyuanvideo,
       title={HunyuanVideo: A Systematic Framework For Large Video Generative Models}, 
-      author={Weijie Kong, Zijian Zhang, Rox Min, Zuozhuo Dai, Jin Zhou, Jiangfeng Xiong, Xin Li, Bo Wu, Qi Tian, Jianwei Zhang, Kathrina Wu, Qin Lin, Yangyu Tao, Qinglin Lu, Songtao Liu, Dax Zhou, Hongfa Wang, Yong Yang, Di Wang, Yuhong Liu, Jie Jiang, Caesar Zhong},
+      author={Weijie Kong, Qi Tian, Zijian Zhang, Rox Min, Zuozhuo Dai, Jin Zhou, Jiangfeng Xiong, Xin Li, Bo Wu, Jianwei Zhang, Kathrina Wu, Qin Lin, Aladdin Wang, Andong Wang, Bai Jiawang, Changlin Li, Cui, Yutao, Deng, Xinchi, Fang Yang, Hao Tan, He, Zhiyu, Huang, Duojun, Jacob Song, Jinbao Xue, Junkun Yuan, Kai Wang, Li, Mengyang, Li, Shuai, Li, Pengyu, Lin, Long, Yanxin, Peng, Yuanbo, Wang, Weiyan, Wang, Hongmei, Wang, Joey, Wu, Jianbing, Wu, Wenqing, Wu, Yi Chen, Yu, Zhentao, Yu, Wenqing, Xu, Zhiyong, Zhou, Jin, Zhou, Zixiang, Yangyu Tao, Qinglin Lu, Songtao Liu, Dax Zhou, Hongfa Wang, Yong Yang, Di Wang, Yuhong Liu, Jie Jiang, Caesar Zhong},
       year={2024},
       archivePrefix={arXiv},
       primaryClass={cs.CV}
