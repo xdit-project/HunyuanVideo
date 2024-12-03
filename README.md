@@ -157,12 +157,10 @@ To evaluate the performance of HunyuanVideo, we selected five strong baselines f
 
 The following table shows the requirements for running HunyuanVideo model (batch size = 1) to generate videos:
 
-|     Model      | GPU  | Setting<br/>(height/width/frame) | Denoising step | GPU Peak Memory  |
-|:--------------:|:----:|:--------------------------------:|:--------------:|:----------------:|
-| HunyuanVideo   | H800 |         720px1280px129f          |       30       |       60G        |
-| HunyuanVideo   | H800 |          544px960px129f          |       30       |       45G        |
-| HunyuanVideo   | H20  |         720px1280px129f          |       30       |       60G        |
-| HunyuanVideo   | H20  |          544px960px129f          |       30       |       45G        |
+|     Model       Setting<br/>(height/width/frame) | Denoising step | GPU Peak Memory  |
+|:-------------:|:--------------------------------:|:--------------:|:----------------:|
+| HunyuanVideo   |        720px1280px129f          |       30       |       60G        |
+| HunyuanVideo   |        544px960px129f           |       30       |       45G        |
 
 * An NVIDIA GPU with CUDA support is required. 
   * We have tested on a single H800/H20 GPU.
