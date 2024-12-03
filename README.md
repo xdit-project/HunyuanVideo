@@ -133,24 +133,23 @@ To evaluate the performance of HunyuanVideo, we selected five strong baselines f
 </thead> 
 <tbody> 
 <tr> 
-    <td>HunyuanVideo (Ours)</td> <td> ✔ </td> <td>5s</td> <td>68.5%</td> <td>64.5%</td> <td>96.4%</td> <td>44.7%</td> <td>1</td>
+    <td>HunyuanVideo (Ours)</td> <td> ✔ </td> <td>5s</td> <td>61.8%</td> <td>66.5%</td> <td>95.7%</td> <td>41.3%</td> <td>1</td>
 </tr> 
 <tr> 
-    <td>CNTopA (API)</td> <td> &#10008 </td> <td>5s</td> <td>68.8%</td> <td>57.5%</td> <td>95.8%</td> <td>38.8%</td> <td>2</td>
+    <td>CNTopA (API)</td> <td> &#10008 </td> <td>5s</td> <td>62.6%</td> <td>61.7%</td> <td>95.6%</td> <td>37.7%</td> <td>2</td>
 </tr> 
 <tr> 
-    <td>CNTopB (Web)</td> <td> &#10008</td> <td>5s</td> <td>64.5%</td> <td>59.3%</td> <td>97.7%</td> <td>37.6%</td> <td>3</td>
+    <td>CNTopB (Web)</td> <td> &#10008</td> <td>5s</td> <td>60.1%</td> <td>62.9%</td> <td>97.7%</td> <td>37.5%</td> <td>3</td>
 </tr> 
 <tr> 
-    <td>GEN-3 alpha (Web)</td> <td>&#10008</td> <td>6s</td> <td>49.3%</td> <td>48.3%</td> <td>97.1%</td> <td>24.6%</td> <td>4</td> 
-</tr> 
-
-<tr> 
-    <td>CNTopC (Web)</td> <td>&#10008</td> <td>5s</td> <td>52.7%</td> <td>42.1%</td> <td>96.2%</td> <td>24.1%</td> <td>5</td>
+    <td>GEN-3 alpha (Web)</td> <td>&#10008</td> <td>6s</td> <td>47.7%</td> <td>54.7%</td> <td>97.5%</td> <td>27.4%</td> <td>4</td> 
 </tr> 
 <tr> 
-    <td>Luma1.6 (API)</td><td>&#10008</td> <td>5s</td> <td>59.7%</td> <td>36.8%</td> <td>93.5%</td> <td>21.6%</td> <td>6</td>
+    <td>Luma1.6 (API)</td><td>&#10008</td> <td>5s</td> <td>57.6%</td> <td>44.2%</td> <td>94.1%</td> <td>24.8%</td> <td>6</td>
 </tr>
+<tr> 
+    <td>CNTopC (Web)</td> <td>&#10008</td> <td>5s</td> <td>48.4%</td> <td>47.2%</td> <td>96.3%</td> <td>24.6%</td> <td>5</td>
+</tr> 
 </tbody>
 </table>
 </p>
