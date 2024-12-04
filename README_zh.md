@@ -3,7 +3,7 @@
 [English](./README.md)
 
 <p align="center">
-  <img src="assets/logo.png"  height=100>
+  <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/logo.png"  height=100>
 </p>
 
 # HunyuanVideo: A Systematic Framework For Large Video Generation Model Training
@@ -81,7 +81,7 @@ HunyuanVideo 是一个全新的开源视频生成大模型，具有与领先的�
 
 HunyuanVideo 是一个隐空间模型，训练时它采用了 3D VAE 压缩时间维度和空间维度的特征。文本提示通过一个大语言模型编码后作为条件输入模型，引导模型通过对高斯噪声的多步去噪，输出一个视频的隐空间表示。最后，推理时通过 3D VAE 解码器将隐空间表示解码为视频。
 <p align="center">
-  <img src="assets/overall.png"  height=300>
+  <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/overall.png"  height=300>
 </p>
 
 ## 🎉 **亮点**
@@ -89,7 +89,7 @@ HunyuanVideo 是一个隐空间模型，训练时它采用了 3D VAE 压缩时�
 
 HunyuanVideo 采用了 Transformer 和 Full Attention 的设计用于视频生成。具体来说，我们使用了一个“双流到单流”的混合模型设计用于视频生成。在双流阶段，视频和文本 token 通过并行的 Transformer Block 独立处理，使得每个模态可以学习适合自己的调制机制而不会相互干扰。在单流阶段，我们将视频和文本 token 连接起来并将它们输入到后续的 Transformer Block 中进行有效的多模态信息融合。这种设计捕捉了视觉和语义信息之间的复杂交互，增强了整体模型性能。
 <p align="center">
-  <img src="assets/backbone.png"  height=350>
+  <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/backbone.png"  height=350>
 </p>
 
 ### **MLLM 文本编码器**
@@ -100,13 +100,13 @@ HunyuanVideo 采用了 Transformer 和 Full Attention 的设计用于视频生�
 
 由于 MLLM 是基于 Causal Attention 的，而 T5-XXL 使用了 Bidirectional Attention 为扩散模型提供更好的文本引导。因此，我们引入了一个额外的 token 优化器来增强文本特征。
 <p align="center">
-  <img src="assets/text_encoder.png"  height=275>
+  <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/text_encoder.png"  height=275>
 </p>
 
 ### **3D VAE**
 我们的 VAE 采用了 CausalConv3D 作为 HunyuanVideo 的编码器和解码器，用于压缩视频的时间维度和空间维度，其中时间维度压缩 4 倍，空间维度压缩 8 倍，压缩为 16 channels。这样可以显著减少后续 Transformer 模型的 token 数量，使我们能够在原始分辨率和帧率下训练视频生成模型。
 <p align="center">
-  <img src="assets/3dvae.png"  height=150>
+  <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/3dvae.png"  height=150>
 </p>
 
 ### **Prompt 改写**
