@@ -112,7 +112,7 @@ HunyuanVideo 采用了 Transformer 和 Full Attention 的设计用于视频生�
 ### **Prompt 改写**
 为了解决用户输入文本提示的多样性和不一致性的困难，我们微调了 [Hunyuan-Large model](https://github.com/Tencent/Tencent-Hunyuan-Large) 模型作为我们的 prompt 改写模型，将用户输入的提示词改写为更适合模型偏好的写法。
 
-我们提供了两个改写模式：正常模式和导演模式。两种模式的提示词见[这里](hyvideo/prompt_rewrite.py)。正常模式旨在增强视频生成模型对用户意图的理解，从而更准确地解释提供的指令。大师模式增强了诸如构图、光照和摄像机移动等方面的描述，倾向于生成视觉质量更高的视频。注意，这种增强有时可能会导致一些语义细节的丢失。
+我们提供了两个改写模式：正常模式和导演模式。两种模式的提示词见[这里](hyvideo/prompt_rewrite.py)。正常模式旨在增强视频生成模型对用户意图的理解，从而更准确地解释提供的指令。导演模式增强了诸如构图、光照和摄像机移动等方面的描述，倾向于生成视觉质量更高的视频。注意，这种增强有时可能会导致一些语义细节的丢失。
 
 Prompt 改写模型可以直接使用 [Hunyuan-Large](https://github.com/Tencent/Tencent-Hunyuan-Large) 部署和推理. 我们开源了 prompt 改写模型的权重，见[这里](https://huggingface.co/Tencent/HunyuanVideo-PromptRewrite).
 
