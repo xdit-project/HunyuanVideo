@@ -241,13 +241,15 @@ python3 sample_video.py \
 ```bash
 cd HunyuanVideo
 
-torchrun --nproc_per_node=3 sample_video_parallel.py \
-    --video-size 720 1280 \
+torchrun --nproc_per_node=8 sample_video_parallel.py \
+    --video-size 1280 720 \
     --video-length 129 \
     --infer-steps 50 \
     --prompt "A cat walks on the grass, realistic style." \
     --flow-reverse \
-    --use-cpu-offload \
+    --seed 42 \
+    --ulysses_degree 8 \
+    --ring_degree 1 \
     --save-path ./results
 ```
 

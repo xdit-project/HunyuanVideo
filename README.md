@@ -10,15 +10,28 @@ Follow the [instruction](https://github.com/Tencent/HunyuanVideo?tab=readme-ov-f
 
 ## Install
 
+Single GPU:
+
 ```bash
 conda install pytorch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0  pytorch-cuda=11.8 -c pytorch -c nvidia
 pip install -r requirements.txt
 ```
 
-## Usage
+Multiple GPUs:
 
 ```bash
-bash run.sh
+cd HunyuanVideo
+
+torchrun --nproc_per_node=8 sample_video_parallel.py \
+    --video-size 1280 720 \
+    --video-length 129 \
+    --infer-steps 50 \
+    --prompt "A cat walks on the grass, realistic style." \
+    --flow-reverse \
+    --seed 42 \
+    --ulysses_degree 8 \
+    --ring_degree 1 \
+    --save-path ./results
 ```
 
 ## BibTeX
