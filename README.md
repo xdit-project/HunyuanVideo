@@ -233,8 +233,6 @@ We list the height/width/frame settings we support in the following table.
 
 ### Using Command Line
 
-**Single GPU:**
-
 ```bash
 cd HunyuanVideo
 
@@ -248,7 +246,51 @@ python3 sample_video.py \
     --save-path ./results
 ```
 
-**Multiple GPUs:**
+### More Configurations
+
+We list some more useful configurations for easy usage:
+
+|        Argument        |  Default  |                Description                |
+|:----------------------:|:---------:|:-----------------------------------------:|
+|       `--prompt`       |   None    |   The text prompt for video generation    |
+|     `--video-size`     | 720 1280  |      The size of the generated video      |
+|    `--video-length`    |    129    |     The length of the generated video     |
+|    `--infer-steps`     |    50     |     The number of steps for sampling      |
+| `--embedded-cfg-scale` |    6.0    |    Embeded  Classifier free guidance scale       |
+|     `--flow-shift`     |    7.0    | Shift factor for flow matching schedulers |
+|     `--flow-reverse`   |    False  | If reverse, learning/sampling from t=1 -> t=0 |
+|        `--seed`        |     None  |   The random seed for generating video, if None, we init a random seed    |
+|  `--use-cpu-offload`   |   False   |    Use CPU offload for the model load to save more memory, necessary for high-res video generation    |
+|     `--save-path`      | ./results |     Path to save the generated video      |
+
+
+## Parallel Inference on Multiple GPUs by xDiT
+
+[xDiT](https://github.com/xdit-project/xDiT) is a Scalable Inference Engine for Diffusion Transformers (DiTs) on multi-GPU Clusters.
+It has successfully provide low latency parallel infernece solution for a varitey of DiTs models, including mochi-1, CogVideoX, Flux.1, SD3, etc. This repo adoped the [Unified Sequence Parallelism (USP)](https://arxiv.org/abs/2405.07719) APIs for parallel inference of the HunyuanVideo model.
+
+### Install Dependencies Compatible with xDiT
+
+```
+conda env create -f environment.yml
+
+# 2. Activate the environment
+conda activate HunyuanVideoxDiT
+
+# 3. Install PyTorch component with CUDA 11.8
+conda install pytorch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 pytorch-cuda=11.8 -c pytorch -c nvidia
+
+# 4. Install pip dependencies
+python -m pip install -r requirements_xdit.txt
+```
+
+# You can skip the above steps and pull the pre-built docker image directly
+# docker pull thufeifeibear/hunyuanvideo:latest
+```
+
+### Usage
+
+For example, to generate a video with 8 GPUs, you can use the following command:
 
 ```bash
 cd HunyuanVideo
@@ -265,7 +307,10 @@ torchrun --nproc_per_node=8 sample_video.py \
     --save-path ./results
 ```
 
-parallelization cofigurations
+You can change the `--ulysses-degree` and `--ring-degree` to control the parallel configurations for the best performance. The valid parallel configurations are shown in the following table.
+
+<details>
+<summary>Supported Parallel Configurations (Click to expand)</summary>
 
 | --video-size | --video-length | supported --ulysses-degree x --ring-degree | --nproc-per-node |
 |--------------|----------------|--------------------------------------------|------------------|
@@ -286,22 +331,8 @@ parallelization cofigurations
 | 832 624      | 129            | 4x1,2x2,1x4                                | 4                |
 | 832 624      | 129            | 2x1,1x2                                    | 2                |
 
-### More Configurations
+</details>
 
-We list some more useful configurations for easy usage:
-
-|        Argument        |  Default  |                Description                |
-|:----------------------:|:---------:|:-----------------------------------------:|
-|       `--prompt`       |   None    |   The text prompt for video generation    |
-|     `--video-size`     | 720 1280  |      The size of the generated video      |
-|    `--video-length`    |    129    |     The length of the generated video     |
-|    `--infer-steps`     |    50     |     The number of steps for sampling      |
-| `--embedded-cfg-scale` |    6.0    |    Embeded  Classifier free guidance scale       |
-|     `--flow-shift`     |    7.0    | Shift factor for flow matching schedulers |
-|     `--flow-reverse`   |    False  | If reverse, learning/sampling from t=1 -> t=0 |
-|        `--seed`        |     None  |   The random seed for generating video, if None, we init a random seed    |
-|  `--use-cpu-offload`   |   False   |    Use CPU offload for the model load to save more memory, necessary for high-res video generation    |
-|     `--save-path`      | ./results |     Path to save the generated video      |
 
 
 ## 🔗 BibTeX
