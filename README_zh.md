@@ -219,7 +219,7 @@ docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyua
 
 ### 使用命令行
 
-单GPU
+**单GPU**
 
 ```bash
 cd HunyuanVideo
@@ -236,7 +236,7 @@ python3 sample_video.py \
     --save-path ./results
 ```
 
-多GPU
+**多GPU**
 
 ```bash
 cd HunyuanVideo
@@ -252,6 +252,27 @@ torchrun --nproc_per_node=8 sample_video_parallel.py \
     --ring_degree 1 \
     --save-path ./results
 ```
+
+并行参数
+
+| --video-size | --video-length | supported --ulysses-degree x --ring-degree | --nproc-per-node |
+|--------------|----------------|--------------------------------------------|------------------|
+| 1280 720     | 129            | 8x1,4x2,2x4,1x8                            | 8                |
+| 1280 720     | 129            | 4x1,2x2,1x4                                | 4                |
+| 1280 720     | 129            | 2x1,1x2                                    | 2                |
+| 1104 832     | 129            | 3x1,1x3                                    | 3                |
+| 960 960      | 129            | 6x1,3x2,2x3,1x6                            | 6                |
+| 960 960      | 129            | 4x1,2x2,1x4                                | 4                |
+| 960 960      | 129            | 1x2,2x1                                    | 2                |
+| 832 1104     | 129            | 4x1,2x2,1x4                                | 4                |
+| 832 1104     | 129            | 2x1,1x2                                    | 2                |
+| 720 1280     | 129            | 1x5                                        | 5                |
+| 720 1280     | 129            | 3x1,1x3                                    | 3                |
+| 960 544      | 129            | 6x1,3x2,2x3,1x6                            | 6                |
+| 960 544      | 129            | 4x1,2x2,1x4                                | 4                |
+| 960 544      | 129            | 1x2,2x1                                    | 2                |
+| 832 624      | 129            | 4x1,2x2,1x4                                | 4                |
+| 832 624      | 129            | 2x1,1x2                                    | 2                |
 
 ### 更多配置
 
