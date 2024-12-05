@@ -332,6 +332,10 @@ You can change the `--ulysses-degree` and `--ring-degree` to control the paralle
 | 960 544      | 129            | 1x2,2x1                                    | 2                |
 | 832 624      | 129            | 4x1,2x2,1x4                                | 4                |
 | 832 624      | 129            | 2x1,1x2                                    | 2                |
+| 720 720      | 129            | 1x5                                        | 5                |
+| 720 720      | 129            | 3x1,1x3                                    | 3                |
+| 624 832      | 129            | 3x1,1x3                                    | 3                |
+| 544 960      | 129            | 2x1,1x2                                    | 2                |
 
 </details>
 
