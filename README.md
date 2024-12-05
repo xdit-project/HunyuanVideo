@@ -282,7 +282,18 @@ If you find [HunyuanVideo](https://github.com/Tencent/HunyuanVideo/blob/main/ass
 }
 ```
 
+
+
+## 🧩 Projects that use HunyuanVideo
+
+If you develop/use HunyuanVideo in your projects, welcome to let us know.
+
+- V2V and F8 Inference ComfyUI: [ComfyUI-HunyuanVideoWrapper](https://github.com/kijai/ComfyUI-HunyuanVideoWrapper) by [Kijai](https://github.com/kijai)
+
+
+
 ## Acknowledgements
+
 We would like to thank the contributors to the [SD3](https://huggingface.co/stabilityai/stable-diffusion-3-medium), [FLUX](https://github.com/black-forest-labs/flux), [Llama](https://github.com/meta-llama/llama), [LLaVA](https://github.com/haotian-liu/LLaVA), [Xtuner](https://github.com/InternLM/xtuner), [diffusers](https://github.com/huggingface/diffusers) and [huggingface](https://huggingface.co) repositories, for their open research and exploration.
 Additionally, we also thank the Tencent Hunyuan Multimodal team for their help with the text encoder. 
 
