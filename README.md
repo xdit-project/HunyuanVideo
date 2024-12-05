@@ -290,7 +290,7 @@ You can skip the above steps and pull the pre-built docker image directly, which
 docker pull thufeifeibear/hunyuanvideo:latest
 ```
 
-### Usage
+### Using Command Line
 
 For example, to generate a video with 8 GPUs, you can use the following command:
 
@@ -304,8 +304,8 @@ torchrun --nproc_per_node=8 sample_video.py \
     --prompt "A cat walks on the grass, realistic style." \
     --flow-reverse \
     --seed 42 \
-    --ulysses_degree 8 \
-    --ring_degree 1 \
+    --ulysses-degree 8 \
+    --ring-degree 1 \
     --save-path ./results
 ```
 
