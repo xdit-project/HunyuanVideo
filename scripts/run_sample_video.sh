@@ -4,10 +4,10 @@
 python3 sample_video.py \
     --video-size 720 1280 \
     --video-length 129 \
-    --prompt "A cat walks on the grass, realistic style." \
-    --embedded-cfg-scale 6.0 \
     --infer-steps 50 \
-    --flow-shift 7.0 \
+    --prompt "A cat walks on the grass, realistic style." \
     --flow-reverse \
+    --flow-shift 7.0 \
+    --seed 0 \
     --use-cpu-offload \
-    --save-path ./results \
+    --save-path ./results
