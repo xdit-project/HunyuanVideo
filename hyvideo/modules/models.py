@@ -17,6 +17,8 @@ from .mlp_layers import MLP, MLPEmbedder, FinalLayer
 from .modulate_layers import ModulateDiT, modulate, apply_gate
 from .token_refiner import SingleTokenRefiner
 
+from xfuser.core.long_ctx_attention import xFuserLongContextAttention
+
 
 class MMDoubleStreamBlock(nn.Module):
     """
@@ -121,6 +123,7 @@ class MMDoubleStreamBlock(nn.Module):
             bias=True,
             **factory_kwargs,
         )
+        self.hybrid_seq_parallel_attn = xFuserLongContextAttention()
 
     def enable_deterministic(self):
         self.deterministic = True
@@ -197,16 +200,33 @@ class MMDoubleStreamBlock(nn.Module):
         assert (
             cu_seqlens_q.shape[0] == 2 * img.shape[0] + 1
         ), f"cu_seqlens_q.shape:{cu_seqlens_q.shape}, img.shape[0]:{img.shape[0]}"
-        attn = attention(
-            q,
-            k,
-            v,
-            cu_seqlens_q=cu_seqlens_q,
-            cu_seqlens_kv=cu_seqlens_kv,
-            max_seqlen_q=max_seqlen_q,
-            max_seqlen_kv=max_seqlen_kv,
-            batch_size=img_k.shape[0],
+        
+        # attention computation start
+        #attn = attention(
+        #    q,
+        #    k,
+        #    v,
+        #    cu_seqlens_q=cu_seqlens_q,
+        #    cu_seqlens_kv=cu_seqlens_kv,
+        #    max_seqlen_q=max_seqlen_q,
+        #    max_seqlen_kv=max_seqlen_kv,
+        #    batch_size=img_k.shape[0],
+        #)
+        attn = self.hybrid_seq_parallel_attn(
+            None,
+            img_q,
+            img_k,
+            img_v,
+            dropout_p=0.0,
+            causal=False,
+            joint_tensor_query=txt_q,
+            joint_tensor_key=txt_k,
+            joint_tensor_value=txt_v,
+            joint_strategy="rear",
         )
+        b, s, a, d = attn.shape
+        attn = attn.reshape(b, s, -1)
+        # attention computation end
 
         img_attn, txt_attn = attn[:, : img.shape[1]], attn[:, img.shape[1] :]
 
@@ -298,6 +318,7 @@ class MMSingleStreamBlock(nn.Module):
             act_layer=get_activation_layer("silu"),
             **factory_kwargs,
         )
+        self.hybrid_seq_parallel_attn = xFuserLongContextAttention()
 
     def enable_deterministic(self):
         self.deterministic = True
@@ -344,16 +365,33 @@ class MMSingleStreamBlock(nn.Module):
         assert (
             cu_seqlens_q.shape[0] == 2 * x.shape[0] + 1
         ), f"cu_seqlens_q.shape:{cu_seqlens_q.shape}, x.shape[0]:{x.shape[0]}"
-        attn = attention(
-            q,
-            k,
-            v,
-            cu_seqlens_q=cu_seqlens_q,
-            cu_seqlens_kv=cu_seqlens_kv,
-            max_seqlen_q=max_seqlen_q,
-            max_seqlen_kv=max_seqlen_kv,
-            batch_size=x.shape[0],
+        
+        # attention computation start
+        #attn = attention(
+        #    q,
+        #    k,
+        #    v,
+        #    cu_seqlens_q=cu_seqlens_q,
+        #    cu_seqlens_kv=cu_seqlens_kv,
+        #    max_seqlen_q=max_seqlen_q,
+        #    max_seqlen_kv=max_seqlen_kv,
+        #    batch_size=x.shape[0],
+        #)
+        attn = self.hybrid_seq_parallel_attn(
+            None,
+            q[:, :-txt_len, :, :],
+            k[:, :-txt_len, :, :],
+            v[:, :-txt_len, :, :],
+            dropout_p=0.0,
+            causal=False,
+            joint_tensor_query=q[:, -txt_len:, :, :],
+            joint_tensor_key=k[:, -txt_len:, :, :],
+            joint_tensor_value=v[:, -txt_len:, :, :],
+            joint_strategy="rear",
         )
+        b, s, a, d = attn.shape
+        attn = attn.reshape(b, s, -1)
+        # attention computation end
 
         # Compute activation in mlp stream, cat again and run second linear layer.
         output = self.linear2(torch.cat((attn, self.mlp_act(mlp)), 2))

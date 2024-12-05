@@ -219,6 +219,8 @@ docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyua
 
 ### 使用命令行
 
+单GPU
+
 ```bash
 cd HunyuanVideo
 
@@ -230,6 +232,21 @@ python3 sample_video.py \
     --flow-reverse \
     --flow-shift 7.0 \
     --seed 0 \
+    --use-cpu-offload \
+    --save-path ./results
+```
+
+多GPU
+
+```bash
+cd HunyuanVideo
+
+torchrun --nproc_per_node=3 sample_video_parallel.py \
+    --video-size 720 1280 \
+    --video-length 129 \
+    --infer-steps 50 \
+    --prompt "A cat walks on the grass, realistic style." \
+    --flow-reverse \
     --use-cpu-offload \
     --save-path ./results
 ```

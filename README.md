@@ -233,10 +233,27 @@ We list the height/width/frame settings we support in the following table.
 
 ### Using Command Line
 
+Single GPU:
+
 ```bash
 cd HunyuanVideo
 
 python3 sample_video.py \
+    --video-size 720 1280 \
+    --video-length 129 \
+    --infer-steps 50 \
+    --prompt "A cat walks on the grass, realistic style." \
+    --flow-reverse \
+    --use-cpu-offload \
+    --save-path ./results
+```
+
+Multiple GPUs:
+
+```bash
+cd HunyuanVideo
+
+torchrun --nproc_per_node=3 sample_video_parallel.py \
     --video-size 720 1280 \
     --video-length 129 \
     --infer-steps 50 \
