@@ -206,7 +206,6 @@ class MMDoubleStreamBlock(nn.Module):
         
         # attention computation start
         if not self.hybrid_seq_parallel_attn:
-            print("x")
             attn = attention(
                 q,
                 k,
@@ -218,7 +217,6 @@ class MMDoubleStreamBlock(nn.Module):
                 batch_size=img_k.shape[0],
             )
         else:
-            print("2")
             attn1 = self.hybrid_seq_parallel_attn(
                 None,
                 img_q,
