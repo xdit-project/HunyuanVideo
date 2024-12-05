@@ -284,8 +284,10 @@ conda install pytorch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 pytorch-cuda=
 python -m pip install -r requirements_xdit.txt
 ```
 
-# You can skip the above steps and pull the pre-built docker image directly
-# docker pull thufeifeibear/hunyuanvideo:latest
+You can skip the above steps and pull the pre-built docker image directly, which is built from [docker/Dockerfile_xDiT](./docker/Dockerfile_xDiT)
+
+```
+docker pull thufeifeibear/hunyuanvideo:latest
 ```
 
 ### Usage
