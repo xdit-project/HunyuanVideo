@@ -340,6 +340,35 @@ You can change the `--ulysses-degree` and `--ring-degree` to control the paralle
 </details>
 
 
+<p align="center">
+<table align="center">
+<thead>
+<tr>
+    <th colspan="4">Latency (Sec) for 1280x720 (129 frames 50 steps) Ulysses=#GPU</th>
+</tr>
+<tr>
+    <th>GPUs</th>
+    <th>1</th>
+    <th>4</th>
+    <th>8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td>H100</td>
+    <td>1904.08</td>
+    <td>514.08</td>
+    <td>337.58</td>
+</tr>
+<tr>
+    <td>H20</td>
+    <td>6,639.17</td>
+    <td>1762.86</td>
+    <td>940.97</td>
+</tr>
+</tbody>
+</table>
+</p>
 
 ## 🔗 BibTeX
 If you find [HunyuanVideo](https://github.com/Tencent/HunyuanVideo/blob/main/assets/hunyuanvideo.pdf) useful for your research and applications, please cite using this BibTeX:
