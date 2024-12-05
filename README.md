@@ -272,10 +272,10 @@ It has successfully provide low latency parallel infernece solution for a varite
 ### Install Dependencies Compatible with xDiT
 
 ```
-conda env create -f environment.yml
 
-# 2. Activate the environment
-conda activate HunyuanVideoxDiT
+# 1. create a black conda environment
+conda create -n hunyuanxdit python==3.10.9
+conda activate hunyuanxdit
 
 # 3. Install PyTorch component with CUDA 11.8
 conda install pytorch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 pytorch-cuda=11.8 -c pytorch -c nvidia
