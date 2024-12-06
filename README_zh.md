@@ -285,7 +285,7 @@ python3 sample_video.py \
 
 ## 致谢
 
-HunyuanVideo 的开源离不开诸多开源工作，这里我们特别感谢 [SD3](https://huggingface.co/stabilityai/stable-diffusion-3-medium), [FLUX](https://github.com/black-forest-labs/flux), [Llama](https://github.com/meta-llama/llama), [LLaVA](https://github.com/haotian-liu/LLaVA), [Xtuner](https://github.com/InternLM/xtuner), [diffusers](https://github.com/huggingface/diffusers) and [huggingface](https://huggingface.co) 的开源工作和探索。另外，我们也感谢腾讯混元多模态团队对 HunyuanVideo 适配多种文本编码器的支持。
+HunyuanVideo 的开源离不开诸多开源工作，这里我们特别感谢 [SD3](https://huggingface.co/stabilityai/stable-diffusion-3-medium), [FLUX](https://github.com/black-forest-labs/flux), [Llama](https://github.com/meta-llama/llama), [LLaVA](https://github.com/haotian-liu/LLaVA), [Xtuner](https://github.com/InternLM/xtuner), [diffusers](https://github.com/huggingface/diffusers) and [HuggingFace](https://huggingface.co) 的开源工作和探索。另外，我们也感谢腾讯混元多模态团队对 HunyuanVideo 适配多种文本编码器的支持。
 
 
 ## Star 趋势
