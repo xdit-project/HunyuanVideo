@@ -277,10 +277,15 @@ It has successfully provide low latency parallel infernece solution for a varite
 conda create -n hunyuanxdit python==3.10.9
 conda activate hunyuanxdit
 
+<<<<<<< HEAD
 # 3. Install PyTorch component with CUDA 11.8
 conda install pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0  pytorch-cuda=11.8 -c pytorch -c nvidia
+=======
+# 2. Install PyTorch component with CUDA 11.8
+conda install pytorch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 pytorch-cuda=11.8 -c pytorch -c nvidia
+>>>>>>> e44fb26 (fix readme)
 
-# 4. Install pip dependencies
+# 3. Install pip dependencies
 python -m pip install -r requirements_xdit.txt
 ```
 
@@ -322,6 +327,7 @@ You can change the `--ulysses-degree` and `--ring-degree` to control the paralle
 | 1104 832     | 129            | 3x1,1x3                                    | 3                |
 | 960 960      | 129            | 6x1,3x2,2x3,1x6                            | 6                |
 | 960 960      | 129            | 4x1,2x2,1x4                                | 4                |
+| 960 960      | 129            | 3x1,1x3                                    | 3                |
 | 960 960      | 129            | 1x2,2x1                                    | 2                |
 | 832 1104     | 129            | 4x1,2x2,1x4                                | 4                |
 | 832 1104     | 129            | 2x1,1x2                                    | 2                |
@@ -329,6 +335,7 @@ You can change the `--ulysses-degree` and `--ring-degree` to control the paralle
 | 720 1280     | 129            | 3x1,1x3                                    | 3                |
 | 960 544      | 129            | 6x1,3x2,2x3,1x6                            | 6                |
 | 960 544      | 129            | 4x1,2x2,1x4                                | 4                |
+| 960 544      | 129            | 3x1,1x3                                    | 3                |
 | 960 544      | 129            | 1x2,2x1                                    | 2                |
 | 832 624      | 129            | 4x1,2x2,1x4                                | 4                |
 | 832 624      | 129            | 2x1,1x2                                    | 2                |

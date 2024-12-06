@@ -219,8 +219,6 @@ docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyua
 
 ### 使用命令行
 
-**单GPU**
-
 ```bash
 cd HunyuanVideo
 
@@ -230,53 +228,9 @@ python3 sample_video.py \
     --infer-steps 50 \
     --prompt "A cat walks on the grass, realistic style." \
     --flow-reverse \
-    --flow-shift 7.0 \
-    --seed 0 \
     --use-cpu-offload \
     --save-path ./results
 ```
-
-**多GPU**
-
-```bash
-cd HunyuanVideo
-
-torchrun --nproc_per_node=8 sample_video_parallel.py \
-    --video-size 1280 720 \
-    --video-length 129 \
-    --infer-steps 50 \
-    --prompt "A cat walks on the grass, realistic style." \
-    --flow-reverse \
-    --seed 42 \
-    --ulysses_degree 8 \
-    --ring_degree 1 \
-    --save-path ./results
-```
-
-并行参数
-
-| --video-size | --video-length | supported --ulysses-degree x --ring-degree | --nproc-per-node |
-|--------------|----------------|--------------------------------------------|------------------|
-| 1280 720     | 129            | 8x1,4x2,2x4,1x8                            | 8                |
-| 1280 720     | 129            | 4x1,2x2,1x4                                | 4                |
-| 1280 720     | 129            | 2x1,1x2                                    | 2                |
-| 1104 832     | 129            | 3x1,1x3                                    | 3                |
-| 960 960      | 129            | 6x1,3x2,2x3,1x6                            | 6                |
-| 960 960      | 129            | 4x1,2x2,1x4                                | 4                |
-| 960 960      | 129            | 1x2,2x1                                    | 2                |
-| 832 1104     | 129            | 4x1,2x2,1x4                                | 4                |
-| 832 1104     | 129            | 2x1,1x2                                    | 2                |
-| 720 1280     | 129            | 1x5                                        | 5                |
-| 720 1280     | 129            | 3x1,1x3                                    | 3                |
-| 960 544      | 129            | 6x1,3x2,2x3,1x6                            | 6                |
-| 960 544      | 129            | 4x1,2x2,1x4                                | 4                |
-| 960 544      | 129            | 1x2,2x1                                    | 2                |
-| 832 624      | 129            | 4x1,2x2,1x4                                | 4                |
-| 832 624      | 129            | 2x1,1x2                                    | 2                |
-| 720 720      | 129            | 1x5                                        | 5                |
-| 720 720      | 129            | 3x1,1x3                                    | 3                |
-| 624 832      | 129            | 3x1,1x3                                    | 3                |
-| 544 960      | 129            | 2x1,1x2                                    | 2                |
 
 ### 更多配置
 
@@ -295,6 +249,83 @@ torchrun --nproc_per_node=8 sample_video_parallel.py \
 |        `--seed`        |     0     |   随机种子    |
 |  `--use-cpu-offload`   |   False   |    启用 CPU offload，可以节省显存    |
 |     `--save-path`      | ./results |     保存路径      |
+
+
+## 使用 xDiT 实现多卡并行推理
+
+[xDiT](https://github.com/xdit-project/xDiT) 是一个针对多 GPU 集群的扩展推理引擎，用于扩展 Transformers（DiTs）。
+它成功为各种 DiT 模型（包括 mochi-1、CogVideoX、Flux.1、SD3 等）提供了低延迟的并行推理解决方案。该存储库采用了 [Unified Sequence Parallelism (USP)](https://arxiv.org/abs/2405.07719) API 用于混元视频模型的并行推理。
+
+### 安装与 xDiT 兼容的依赖项
+
+```
+# 1. 创建一个空白的 conda 环境
+conda create -n hunyuanxdit python==3.10.9
+conda activate hunyuanxdit
+
+# 2. 使用 CUDA 11.8 安装 PyTorch 组件
+conda install pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0  pytorch-cuda=11.8 -c pytorch -c nvidia
+
+# 3. 安装 pip 依赖项
+python -m pip install -r requirements_xdit.txt
+```
+
+您可以跳过上述步骤，直接拉取预构建的 Docker 镜像，这个镜像是从 [docker/Dockerfile_xDiT](./docker/Dockerfile_xDiT) 构建的
+
+```
+docker pull thufeifeibear/hunyuanvideo:latest
+```
+
+### 使用命令行
+
+例如，可用如下命令使用8张GPU卡完成推理
+
+```bash
+cd HunyuanVideo
+
+torchrun --nproc_per_node=8 sample_video_parallel.py \
+    --video-size 1280 720 \
+    --video-length 129 \
+    --infer-steps 50 \
+    --prompt "A cat walks on the grass, realistic style." \
+    --flow-reverse \
+    --seed 42 \
+    --ulysses_degree 8 \
+    --ring_degree 1 \
+    --save-path ./results
+```
+
+可以配置`--ulysses-degree`和`--ring-degree`来控制并行配置，可选参数如下。
+
+<details>
+<summary>支持的并行配置 (点击查看详情)</summary>
+
+| --video-size | --video-length | supported --ulysses-degree x --ring-degree | --nproc-per-node |
+|--------------|----------------|--------------------------------------------|------------------|
+| 1280 720     | 129            | 8x1,4x2,2x4,1x8                            | 8                |
+| 1280 720     | 129            | 4x1,2x2,1x4                                | 4                |
+| 1280 720     | 129            | 2x1,1x2                                    | 2                |
+| 1104 832     | 129            | 3x1,1x3                                    | 3                |
+| 960 960      | 129            | 6x1,3x2,2x3,1x6                            | 6                |
+| 960 960      | 129            | 4x1,2x2,1x4                                | 4                |
+| 960 960      | 129            | 3x1,1x3                                    | 3                |
+| 960 960      | 129            | 1x2,2x1                                    | 2                |
+| 832 1104     | 129            | 4x1,2x2,1x4                                | 4                |
+| 832 1104     | 129            | 2x1,1x2                                    | 2                |
+| 720 1280     | 129            | 1x5                                        | 5                |
+| 720 1280     | 129            | 3x1,1x3                                    | 3                |
+| 960 544      | 129            | 6x1,3x2,2x3,1x6                            | 6                |
+| 960 544      | 129            | 4x1,2x2,1x4                                | 4                |
+| 960 544      | 129            | 3x1,1x3                                    | 3                |
+| 960 544      | 129            | 1x2,2x1                                    | 2                |
+| 832 624      | 129            | 4x1,2x2,1x4                                | 4                |
+| 832 624      | 129            | 2x1,1x2                                    | 2                |
+| 720 720      | 129            | 1x5                                        | 5                |
+| 720 720      | 129            | 3x1,1x3                                    | 3                |
+| 624 832      | 129            | 3x1,1x3                                    | 3                |
+| 544 960      | 129            | 2x1,1x2                                    | 2                |
+
+</details>
 
 
 ## 🔗 BibTeX
