@@ -164,7 +164,7 @@ Prompt 改写模型可以直接使用 [Hunyuan-Large](https://github.com/Tencent
 | HunyuanVideo   |          544px960px129f          |       30       |       45G        |
 
 * 本项目适用于使用 NVIDIA GPU 和支持 CUDA 的设备
-  * 本项目在单张 H800/H20 GPU 上进行了测试
+  * 模型在单张 80G GPU 上测试
   * 运行 720px1280px129f 的最小显存要求是 60GB，544px960px129f 的最小显存要求是 45GB。
 * 测试操作系统：Linux
 
