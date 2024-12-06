@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/logo.png"  height=100>
 </p>
 
-# HunyuanVideo: A Systematic Framework For Large Video Generation Model Training
+# HunyuanVideo: A Systematic Framework For Large Video Generation Model
 
 <div align="center">
   <a href="https://github.com/Tencent/HunyuanVideo"><img src="https://img.shields.io/static/v1?label=HunyuanVideo Code&message=Github&color=blue&logo=github-pages"></a> &ensp;
@@ -27,7 +27,7 @@
 
 This repo contains PyTorch model definitions, pre-trained weights and inference/sampling code for our paper exploring HunyuanVideo. You can find more visualizations on our [project page](https://aivideo.hunyuan.tencent.com).
 
-> [**HunyuanVideo: A Systematic Framework For Large Video Generation Model Training**](https://arxiv.org/abs/2412.03603) <be>
+> [**HunyuanVideo: A Systematic Framework For Large Video Generation Model**](https://arxiv.org/abs/2412.03603) <be>
 
 
 ## 🎥 Demo
@@ -55,7 +55,7 @@ The video is heavily compressed due to compliance of GitHub policy. The high qua
   - [ ] Checkpoints 
 
 ## Contents
-- [HunyuanVideo: A Systematic Framework For Large Video Generation Model Training](#hunyuanvideo--a-systematic-framework-for-large-video-generation-model-training)
+- [HunyuanVideo: A Systematic Framework For Large Video Generation Model](#hunyuanvideo--a-systematic-framework-for-large-video-generation-model)
   - [🎥 Demo](#-demo)
   - [🔥🔥🔥 News!!](#-news!!)
   - [📑 Open-source Plan](#-open-source-plan)
