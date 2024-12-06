@@ -120,11 +120,6 @@ class UpsampleCausal3D(nn.Module):
         conv = None
         if use_conv_transpose:
             assert False, "Not Implement yet"
-            if kernel_size is None:
-                kernel_size = 4
-            conv = nn.ConvTranspose2d(
-                channels, self.out_channels, kernel_size=kernel_size, stride=2, padding=padding, bias=bias
-            )
         elif use_conv:
             if kernel_size is None:
                 kernel_size = 3
@@ -146,8 +141,6 @@ class UpsampleCausal3D(nn.Module):
 
         if self.norm is not None:
             assert False, "Not Implement yet"
-            hidden_states = self.norm(
-                hidden_states.permute(0, 2, 3, 1)).permute(0, 3, 1, 2)
 
         if self.use_conv_transpose:
             return self.conv(hidden_states)
@@ -177,8 +170,6 @@ class UpsampleCausal3D(nn.Module):
                 first_h = first_h.unsqueeze(2)
             else:
                 assert False, "Not Implement yet"
-                other_h = F.interpolate(
-                    other_h, size=output_size, mode="nearest")
 
             if T > 1:
                 hidden_states = torch.cat((first_h, other_h), dim=2)
