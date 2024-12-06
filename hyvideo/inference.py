@@ -53,18 +53,27 @@ def parallelize_transformer(pipe):
         guidance: torch.Tensor = None,  # Guidance for modulation, should be cfg_scale x 1000.
         return_dict: bool = True,
     ):
-        temporal_size = x.shape[2]
-        x = torch.chunk(x, get_sequence_parallel_world_size(),dim=-2)[get_sequence_parallel_rank()]
-        #text_states = torch.chunk(text_states, get_sequence_parallel_world_size(),dim=-2)[get_sequence_parallel_rank()]
-        #text_mask = torch.chunk(text_mask, get_sequence_parallel_world_size(),dim=-1)[get_sequence_parallel_rank()]
-        
+        if x.shape[-2] // 2 % get_sequence_parallel_world_size() == 0:
+            # try to split x by height
+            split_dim = -2
+        elif x.shape[-1] // 2 % get_sequence_parallel_world_size() == 0:
+            # try to split x by width
+            split_dim = -1
+        else:
+            raise ValueError(f"Cannot split video sequence into ulysses_degree x ring_degree ({get_sequence_parallel_world_size()}) parts evenly")
+
+        # patch sizes for the temporal, height, and width dimensions are 1, 2, and 2.
+        temporal_size, h, w = x.shape[2], x.shape[3] // 2, x.shape[4] // 2
+
+        x = torch.chunk(x, get_sequence_parallel_world_size(),dim=split_dim)[get_sequence_parallel_rank()]
+
         dim_thw = freqs_cos.shape[-1]
-        freqs_cos = freqs_cos.reshape(temporal_size, -1, dim_thw)
-        freqs_cos = torch.chunk(freqs_cos, get_sequence_parallel_world_size(),dim=-2)[get_sequence_parallel_rank()]
+        freqs_cos = freqs_cos.reshape(temporal_size, h, w, dim_thw)
+        freqs_cos = torch.chunk(freqs_cos, get_sequence_parallel_world_size(),dim=split_dim - 1)[get_sequence_parallel_rank()]
         freqs_cos = freqs_cos.reshape(-1, dim_thw)
         dim_thw = freqs_sin.shape[-1]
-        freqs_sin = freqs_sin.reshape(temporal_size, -1, dim_thw)
-        freqs_sin = torch.chunk(freqs_sin, get_sequence_parallel_world_size(),dim=-2)[get_sequence_parallel_rank()]
+        freqs_sin = freqs_sin.reshape(temporal_size, h, w, dim_thw)
+        freqs_sin = torch.chunk(freqs_sin, get_sequence_parallel_world_size(),dim=split_dim - 1)[get_sequence_parallel_rank()]
         freqs_sin = freqs_sin.reshape(-1, dim_thw)
         
         from xfuser.core.long_ctx_attention import xFuserLongContextAttention
@@ -86,7 +95,7 @@ def parallelize_transformer(pipe):
 
         return_dict = not isinstance(output, tuple)
         sample = output["x"]
-        sample = get_sp_group().all_gather(sample, dim=-2)
+        sample = get_sp_group().all_gather(sample, dim=split_dim)
         output["x"] = sample
         return output
 
