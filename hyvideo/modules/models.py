@@ -11,17 +11,11 @@ from diffusers.configuration_utils import ConfigMixin, register_to_config
 from .activation_layers import get_activation_layer
 from .norm_layers import get_norm_layer
 from .embed_layers import TimestepEmbedder, PatchEmbed, TextProjection
-from .attenion import attention, get_cu_seqlens
+from .attenion import attention, parallel_attention, get_cu_seqlens
 from .posemb_layers import apply_rotary_emb
 from .mlp_layers import MLP, MLPEmbedder, FinalLayer
 from .modulate_layers import ModulateDiT, modulate, apply_gate
 from .token_refiner import SingleTokenRefiner
-
-try:
-    import flash_attn
-    from flash_attn.flash_attn_interface import _flash_attn_forward
-except:
-    _flash_attn_forward = None
 
 
 class MMDoubleStreamBlock(nn.Module):
@@ -218,48 +212,17 @@ class MMDoubleStreamBlock(nn.Module):
                 batch_size=img_k.shape[0],
             )
         else:
-            attn1 = self.hybrid_seq_parallel_attn(
-                None,
-                img_q,
-                img_k,
-                img_v,
-                dropout_p=0.0,
-                causal=False,
-                joint_tensor_query=txt_q[:,:cu_seqlens_q[1] - img_q.shape[1]],
-                joint_tensor_key=txt_k[:,:cu_seqlens_kv[1] - img_k.shape[1]],
-                joint_tensor_value=txt_v[:,:cu_seqlens_kv[1] - img_v.shape[1]],
-                joint_strategy="rear",
+            attn = parallel_attention(
+                self.hybrid_seq_parallel_attn,
+                q,
+                k,
+                v,
+                img_q_len=img_q.shape[1],
+                img_kv_len=img_k.shape[1],
+                cu_seqlens_q=cu_seqlens_q,
+                cu_seqlens_kv=cu_seqlens_kv
             )
-            if flash_attn.__version__ >= '2.7.0':
-                attn2, *_ = _flash_attn_forward(
-                    txt_q[:,cu_seqlens_q[1] - img_q.shape[1]:],
-                    txt_k[:,cu_seqlens_kv[1] - img_k.shape[1]:],
-                    txt_v[:,cu_seqlens_kv[1] - img_v.shape[1]:],
-                    dropout_p=0.0,
-                    softmax_scale=txt_q.shape[-1] ** (-0.5),
-                    causal=False,
-                    window_size_left=-1,
-                    window_size_right=-1,
-                    softcap=0.0,
-                    alibi_slopes=None,
-                    return_softmax=False,
-                )
-            else:
-                attn2, *_ = _flash_attn_forward(
-                    txt_q[:,cu_seqlens_q[1] - img_q.shape[1]:],
-                    txt_k[:,cu_seqlens_kv[1] - img_k.shape[1]:],
-                    txt_v[:,cu_seqlens_kv[1] - img_v.shape[1]:],
-                    dropout_p=0.0,
-                    softmax_scale=txt_q.shape[-1] ** (-0.5),
-                    causal=False,
-                    window_size=(-1, -1),
-                    softcap=0.0,
-                    alibi_slopes=None,
-                    return_softmax=False,
-                )
-            attn = torch.cat([attn1, attn2], dim=1)
-            b, s, a, d = attn.shape
-            attn = attn.reshape(b, s, -1)
+            
         # attention computation end
 
         img_attn, txt_attn = attn[:, : img.shape[1]], attn[:, img.shape[1] :]
@@ -413,48 +376,16 @@ class MMSingleStreamBlock(nn.Module):
                 batch_size=x.shape[0],
             )
         else:
-            attn1 = self.hybrid_seq_parallel_attn(
-                None,
-                q[:, :-txt_len, :, :],
-                k[:, :-txt_len, :, :],
-                v[:, :-txt_len, :, :],
-                dropout_p=0.0,
-                causal=False,
-                joint_tensor_query=q[:, -txt_len:cu_seqlens_q[1], :, :],
-                joint_tensor_key=k[:, -txt_len:cu_seqlens_kv[1], :, :],
-                joint_tensor_value=v[:, -txt_len:cu_seqlens_kv[1], :, :],
-                joint_strategy="rear",
+            attn = parallel_attention(
+                self.hybrid_seq_parallel_attn,
+                q,
+                k,
+                v,
+                img_q_len=img_q.shape[1],
+                img_kv_len=img_k.shape[1],
+                cu_seqlens_q=cu_seqlens_q,
+                cu_seqlens_kv=cu_seqlens_kv
             )
-            if flash_attn.__version__ >= '2.7.0':
-                attn2, *_ = _flash_attn_forward(
-                    q[:,cu_seqlens_q[1]:],
-                    k[:,cu_seqlens_kv[1]:],
-                    v[:,cu_seqlens_kv[1]:],
-                    dropout_p=0.0,
-                    softmax_scale=txt_q.shape[-1] ** (-0.5),
-                    causal=False,
-                    window_size_left=-1,
-                    window_size_right=-1,
-                    softcap=0.0,
-                    alibi_slopes=None,
-                    return_softmax=False,
-                )
-            else:
-                attn2, *_ = _flash_attn_forward(
-                    q[:,cu_seqlens_q[1]:],
-                    k[:,cu_seqlens_kv[1]:],
-                    v[:,cu_seqlens_kv[1]:],
-                    dropout_p=0.0,
-                    softmax_scale=txt_q.shape[-1] ** (-0.5),
-                    causal=False,
-                    window_size=(-1, -1),
-                    softcap=0.0,
-                    alibi_slopes=None,
-                    return_softmax=False,
-                )
-            attn = torch.cat([attn1, attn2], dim=1)
-            b, s, a, d = attn.shape
-            attn = attn.reshape(b, s, -1)
         # attention computation end
 
         # Compute activation in mlp stream, cat again and run second linear layer.
