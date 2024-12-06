@@ -278,10 +278,10 @@ conda create -n hunyuanxdit python==3.10.9
 conda activate hunyuanxdit
 
 # 3. Install PyTorch component with CUDA 11.8
-pip install torch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 --index-url https://download.pytorch.org/whl/cu118
+conda install pytorch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 pytorch-cuda=11.8 -c pytorch -c nvidia
 
 # 4. Install pip dependencies
-pip install -r requirements_xdit.txt
+python -m pip install -r requirements_xdit.txt
 ```
 
 You can skip the above steps and pull the pre-built docker image directly, which is built from [docker/Dockerfile_xDiT](./docker/Dockerfile_xDiT)

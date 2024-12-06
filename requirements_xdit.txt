@@ -12,5 +12,5 @@ imageio==2.34.0
 imageio-ffmpeg==0.5.1
 safetensors==0.4.3
 ninja
-flash-attn==2.7.0.post2
+flash-attn==2.6.3
 xfuser==0.4.0

@@ -235,75 +235,27 @@ python3 sample_video.py \
     --use-cpu-offload \
     --save-path ./results
 ```
-### 更多配置
 
-下面列出了更多关键配置项：
-
-|        参数        |  默认值  |                描述                |
-|:----------------------:|:---------:|:-----------------------------------------:|
-|       `--prompt`       |   None    |   用于生成视频的 prompt    |
-|     `--video-size`     | 720 1280  |      生成视频的高度和宽度      |
-|    `--video-length`    |    129    |     生成视频的帧数     |
-|    `--infer-steps`     |    50     |     生成时采样的步数      |
-| `--embedded-cfg-scale` |    6.0    |    文本的控制强度       |
-|     `--flow-shift`     |    7.0    | 推理时 timestep 的 shift 系数，值越大，高噪区域采样步数越多 |
-|     `--flow-reverse`   |    False  | If reverse, learning/sampling from t=1 -> t=0 |
-|     `--neg-prompt`     |   None    | 负向词  |
-|        `--seed`        |     0     |   随机种子    |
-|  `--use-cpu-offload`   |   False   |    启用 CPU offload，可以节省显存    |
-|     `--save-path`      | ./results |     保存路径      |
-
-
-
-## 基于 xDiT 的多 GPU 并行推理
-
-[xDiT](https://github.com/xdit-project/xDiT) 是一个用于多 GPU 集群上的扩散 Transformer (DiTs) 的可扩展推理引擎。它已经成功为多种 DiTs 模型提供了低延迟的并行推理解决方案，包括 mochi-1、CogVideoX、Flux.1、SD3 等。本项目采用了 [统一序列并行 (USP)](https://arxiv.org/abs/2405.07719) API 来实现 HunyuanVideo 模型的并行推理。
-
-### 安装与 xDiT 兼容的依赖
-
-```bash
-# 1. 创建一个空白的 conda 环境
-conda create -n hunyuanxdit python==3.10.9
-conda activate hunyuanxdit
-
-# 3. 安装支持 CUDA 11.8 的 PyTorch 组件
-pip install torch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 --index-url https://download.pytorch.org/whl/cu118
-
-# 4. 安装 pip 依赖
-pip install -r requirements_xdit.txt
-```
-
-你可以跳过上述步骤，直接拉取基于 [docker/Dockerfile_xDiT](./docker/Dockerfile_xDiT) 构建的预构建 docker 镜像：
-
-```bash
-docker pull thufeifeibear/hunyuanvideo:latest
-```
-
-### 使用命令行
-
-例如，要使用 8 个 GPU 生成视频，可以使用以下命令：
+**多GPU**
 
 ```bash
 cd HunyuanVideo
 
-torchrun --nproc_per_node=8 sample_video.py \
+torchrun --nproc_per_node=8 sample_video_parallel.py \
     --video-size 1280 720 \
     --video-length 129 \
     --infer-steps 50 \
     --prompt "A cat walks on the grass, realistic style." \
     --flow-reverse \
     --seed 42 \
-    --ulysses-degree 8 \
-    --ring-degree 1 \
+    --ulysses_degree 8 \
+    --ring_degree 1 \
     --save-path ./results
 ```
 
-你可以通过调整 `--ulysses-degree` 和 `--ring-degree` 来控制并行配置以获得最佳性能。下表展示了有效的并行配置。
+并行参数
 
-<details>
-<summary>支持的并行配置（点击展开）</summary>
-
-| --video-size | --video-length | 支持的 --ulysses-degree x --ring-degree | --nproc-per-node |
+| --video-size | --video-length | supported --ulysses-degree x --ring-degree | --nproc-per-node |
 |--------------|----------------|--------------------------------------------|------------------|
 | 1280 720     | 129            | 8x1,4x2,2x4,1x8                            | 8                |
 | 1280 720     | 129            | 4x1,2x2,1x4                                | 4                |
@@ -326,37 +278,24 @@ torchrun --nproc_per_node=8 sample_video.py \
 | 624 832      | 129            | 3x1,1x3                                    | 3                |
 | 544 960      | 129            | 2x1,1x2                                    | 2                |
 
-</details>
+### 更多配置
 
-<p align="center">
-<table align="center">
-<thead>
-<tr>
-    <th colspan="4">1280x720 分辨率的延迟（秒）(129帧 50步采样 Ulysses=#GPU)</th>
-</tr>
-<tr>
-    <th>GPUs</th>
-    <th>1</th>
-    <th>4</th>
-    <th>8</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-    <td>H100</td>
-    <td>1904.08</td>
-    <td>514.08</td>
-    <td>337.58</td>
-</tr>
-<tr>
-    <td>H20</td>
-    <td>6,639.17</td>
-    <td>1762.86</td>
-    <td>940.97</td>
-</tr>
-</tbody>
-</table>
-</p>
+下面列出了更多关键配置项：
+
+|        参数        |  默认值  |                描述                |
+|:----------------------:|:---------:|:-----------------------------------------:|
+|       `--prompt`       |   None    |   用于生成视频的 prompt    |
+|     `--video-size`     | 720 1280  |      生成视频的高度和宽度      |
+|    `--video-length`    |    129    |     生成视频的帧数     |
+|    `--infer-steps`     |    50     |     生成时采样的步数      |
+| `--embedded-cfg-scale` |    6.0    |    文本的控制强度       |
+|     `--flow-shift`     |    7.0    | 推理时 timestep 的 shift 系数，值越大，高噪区域采样步数越多 |
+|     `--flow-reverse`   |    False  | If reverse, learning/sampling from t=1 -> t=0 |
+|     `--neg-prompt`     |   None    | 负向词  |
+|        `--seed`        |     0     |   随机种子    |
+|  `--use-cpu-offload`   |   False   |    启用 CPU offload，可以节省显存    |
+|     `--save-path`      | ./results |     保存路径      |
+
 
 ## 🔗 BibTeX
 如果您认为 [HunyuanVideo](https://github.com/Tencent/HunyuanVideo/blob/main/assets/hunyuanvideo.pdf) 给您的研究和应用带来了一些帮助，可以通过下面的方式来引用:
