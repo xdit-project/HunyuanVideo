@@ -31,6 +31,7 @@
 注：由于 GitHub 的政策限制，上面的视频质量被大幅压缩。你可以从 [这里](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material) 下载高质量版本。
 
 ## 🔥🔥🔥 更新!!
+* 2024年12月03日: 🤗 开源 HunyuanVideo 多卡并行推理代码，由[xDiT](https://github.com/xdit-project/xDiT)提供。
 * 2024年12月03日: 🤗 开源 HunyuanVideo 文生视频的推理代码和模型权重。
 
 ## 📑 开源计划
@@ -38,7 +39,7 @@
 - HunyuanVideo (文生视频模型)
   - [x] 推理代码
   - [x] 模型权重 
-  - [ ] Penguin Video 基准测试集
+  - [x] Penguin Video 基准测试集
   - [ ] Gradio
   - [ ] ComfyUI
   - [ ] Diffusers 

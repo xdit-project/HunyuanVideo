@@ -33,6 +33,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 The video is heavily compressed due to compliance of GitHub policy. The high quality version can be downloaded from [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
 
 ## 🔥🔥🔥 News!!
+* Dec 6, 2024: 🤗 We release the parallel inference code for HunyuanVideo powered by [xDiT](https://github.com/xdit-project/xDiT).
 * Dec 3, 2024: 🤗 We release the inference code and model weights of HunyuanVideo.
 
 ## 📑 Open-source Plan
@@ -40,7 +41,7 @@ The video is heavily compressed due to compliance of GitHub policy. The high qua
 - HunyuanVideo (Text-to-Video Model)
   - [x] Inference 
   - [x] Checkpoints
-  - [ ] Multi-gpu inference
+  - [x] Multi-gpu inference
   - [ ] Penguin Video Benchmark
   - [ ] Web Demo (Gradio) 
   - [ ] ComfyUI
@@ -272,18 +273,12 @@ It has successfully provide low latency parallel infernece solution for a varite
 ### Install Dependencies Compatible with xDiT
 
 ```
-
 # 1. create a black conda environment
 conda create -n hunyuanxdit python==3.10.9
 conda activate hunyuanxdit
 
-<<<<<<< HEAD
 # 3. Install PyTorch component with CUDA 11.8
 conda install pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0  pytorch-cuda=11.8 -c pytorch -c nvidia
-=======
-# 2. Install PyTorch component with CUDA 11.8
-conda install pytorch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 pytorch-cuda=11.8 -c pytorch -c nvidia
->>>>>>> e44fb26 (fix readme)
 
 # 3. Install pip dependencies
 python -m pip install -r requirements_xdit.txt
