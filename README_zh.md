@@ -196,21 +196,16 @@ python -m pip install -r requirements.txt
 python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.5.9.post1
 ```
 
-另外，我们提供了一个预构建的 Docker 镜像 [docker_hunyuanvideo](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/hunyuan_video_cu12.tar)。
-
+另外，我们提供了一个预构建的 Docker 镜像，可以使用如下命令进行拉取和运行。
 ```shell
-# 1.使用下面的链接下载 Docker 镜像 tar 包 (用于 CUDA 12).
-wget https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/hunyuan_video_cu12.tar
+# 用于 CUDA 11
+docker pull hunyuanvideo/hunyuanvideo:cuda_11
+docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyuanvideo --security-opt=seccomp=unconfined --ulimit=stack=67108864 --ulimit=memlock=-1 --privileged hunyuanvideo/hunyuanvideo:cuda_11
 
-# 2. 导入 docker tar 包然后打印镜像的元信息 (用于 CUDA 12).
-docker load -i hunyuan_video.tar
-
-docker image ls
-
-# 3. 启动容器
-docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyuanvideo --security-opt=seccomp=unconfined --ulimit=stack=67108864 --ulimit=memlock=-1 --privileged  docker_image_tag
+# 用于 CUDA 12
+docker pull hunyuanvideo/hunyuanvideo:cuda_12
+docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyuanvideo --security-opt=seccomp=unconfined --ulimit=stack=67108864 --ulimit=memlock=-1 --privileged hunyuanvideo/hunyuanvideo:cuda_12
 ```
-
 
 ## 🧱 下载预训练模型
 
