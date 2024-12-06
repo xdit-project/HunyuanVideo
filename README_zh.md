@@ -274,7 +274,7 @@ python3 sample_video.py \
 
 如果您的项目中有开发或使用 HunyuanVideo，欢迎告知我们。
 
-- V2V and F8 Inference ComfyUI: [ComfyUI-HunyuanVideoWrapper](https://github.com/kijai/ComfyUI-HunyuanVideoWrapper) by [Kijai](https://github.com/kijai)
+- ComfyUI (支持F8推理和Video2Video生成): [ComfyUI-HunyuanVideoWrapper](https://github.com/kijai/ComfyUI-HunyuanVideoWrapper) by [Kijai](https://github.com/kijai)
 
 
 

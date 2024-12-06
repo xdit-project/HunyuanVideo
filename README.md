@@ -284,7 +284,7 @@ If you find [HunyuanVideo](https://arxiv.org/abs/2412.03603) useful for your res
 
 If you develop/use HunyuanVideo in your projects, welcome to let us know.
 
-- V2V and F8 Inference ComfyUI: [ComfyUI-HunyuanVideoWrapper](https://github.com/kijai/ComfyUI-HunyuanVideoWrapper) by [Kijai](https://github.com/kijai)
+- ComfyUI (with support for F8 Inference and Video2Video Generation): [ComfyUI-HunyuanVideoWrapper](https://github.com/kijai/ComfyUI-HunyuanVideoWrapper) by [Kijai](https://github.com/kijai)
 
 
 
