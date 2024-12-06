@@ -278,7 +278,7 @@ conda create -n hunyuanxdit python==3.10.9
 conda activate hunyuanxdit
 
 # 3. Install PyTorch component with CUDA 11.8
-conda install pytorch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 pytorch-cuda=11.8 -c pytorch -c nvidia
+conda install pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0  pytorch-cuda=11.8 -c pytorch -c nvidia
 
 # 4. Install pip dependencies
 python -m pip install -r requirements_xdit.txt
