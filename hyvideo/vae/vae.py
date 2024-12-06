@@ -71,10 +71,6 @@ class EncoderCausal3D(nn.Module):
                     i < num_spatial_downsample_layers)
                 add_time_downsample = bool(i >= (
                     len(block_out_channels) - 1 - num_time_downsample_layers) and not is_final_block)
-            elif time_compression_ratio == 8:
-                add_spatial_downsample = bool(
-                    i < num_spatial_downsample_layers)
-                add_time_downsample = bool(i < num_time_downsample_layers)
             else:
                 raise ValueError(
                     f"Unsupported time_compression_ratio: {time_compression_ratio}")
