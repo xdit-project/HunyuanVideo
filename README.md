@@ -207,20 +207,16 @@ python -m pip install ninja
 python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.5.9.post1
 ```
 
-Additionally, HunyuanVideo also provides a pre-built Docker image:
-[docker_hunyuanvideo](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/hunyuan_video_cu12.tar). 
+Additionally, HunyuanVideo also provides a pre-built Docker image. Use the following command to pull and run the docker image.
 
 ```shell
-# 1. Use the following link to download the docker image tar file (For CUDA 12).
-wget https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/hunyuan_video_cu12.tar
+# For CUDA 11
+docker pull hunyuanvideo/hunyuanvideo:cuda_11
+docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyuanvideo --security-opt=seccomp=unconfined --ulimit=stack=67108864 --ulimit=memlock=-1 --privileged hunyuanvideo/hunyuanvideo:cuda_11
 
-# 2. Import the docker tar file and show the image meta information (For CUDA 12).
-docker load -i hunyuan_video.tar
-
-docker image ls
-
-# 3. Run the container based on the image
-docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyuanvideo --security-opt=seccomp=unconfined --ulimit=stack=67108864 --ulimit=memlock=-1 --privileged  docker_image_tag
+# For CUDA 12
+docker pull hunyuanvideo/hunyuanvideo:cuda_12
+docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyuanvideo --security-opt=seccomp=unconfined --ulimit=stack=67108864 --ulimit=memlock=-1 --privileged hunyuanvideo/hunyuanvideo:cuda_12
 ```
 
 
