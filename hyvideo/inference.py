@@ -1,3 +1,4 @@
+import os
 import time
 import random
 import functools
@@ -162,7 +163,7 @@ class Inference(object):
                 ring_degree=args.ring_degree,
                 ulysses_degree=args.ulysses_degree,
             )
-            device = torch.device(f"cuda:{dist.get_rank()}")
+            device = torch.device(f"cuda:{os.environ['LOCAL_RANK']}")
         else:
             if device is None:
                 device = "cuda" if torch.cuda.is_available() else "cpu"
