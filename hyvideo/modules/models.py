@@ -18,6 +18,7 @@ from .modulate_layers import ModulateDiT, modulate, apply_gate
 from .token_refiner import SingleTokenRefiner
 
 try:
+    import flash_attn
     from flash_attn.flash_attn_interface import _flash_attn_forward
 except:
     _flash_attn_forward = None
@@ -229,19 +230,33 @@ class MMDoubleStreamBlock(nn.Module):
                 joint_tensor_value=txt_v[:,:cu_seqlens_kv[1] - img_v.shape[1]],
                 joint_strategy="rear",
             )
-            attn2, *_ = _flash_attn_forward(
-                txt_q[:,cu_seqlens_q[1] - img_q.shape[1]:],
-                txt_k[:,cu_seqlens_kv[1] - img_k.shape[1]:],
-                txt_v[:,cu_seqlens_kv[1] - img_v.shape[1]:],
-                dropout_p=0.0,
-                softmax_scale=txt_q.shape[-1] ** (-0.5),
-                causal=False,
-                window_size_left=-1,
-                window_size_right=-1,
-                softcap=0.0,
-                alibi_slopes=None,
-                return_softmax=False,
-            )
+            if flash_attn.__version__ >= '2.7.0':
+                attn2, *_ = _flash_attn_forward(
+                    txt_q[:,cu_seqlens_q[1] - img_q.shape[1]:],
+                    txt_k[:,cu_seqlens_kv[1] - img_k.shape[1]:],
+                    txt_v[:,cu_seqlens_kv[1] - img_v.shape[1]:],
+                    dropout_p=0.0,
+                    softmax_scale=txt_q.shape[-1] ** (-0.5),
+                    causal=False,
+                    window_size_left=-1,
+                    window_size_right=-1,
+                    softcap=0.0,
+                    alibi_slopes=None,
+                    return_softmax=False,
+                )
+            else:
+                attn2, *_ = _flash_attn_forward(
+                    txt_q[:,cu_seqlens_q[1] - img_q.shape[1]:],
+                    txt_k[:,cu_seqlens_kv[1] - img_k.shape[1]:],
+                    txt_v[:,cu_seqlens_kv[1] - img_v.shape[1]:],
+                    dropout_p=0.0,
+                    softmax_scale=txt_q.shape[-1] ** (-0.5),
+                    causal=False,
+                    window_size=(-1, -1),
+                    softcap=0.0,
+                    alibi_slopes=None,
+                    return_softmax=False,
+                )
             attn = torch.cat([attn1, attn2], dim=1)
             b, s, a, d = attn.shape
             attn = attn.reshape(b, s, -1)
@@ -410,19 +425,33 @@ class MMSingleStreamBlock(nn.Module):
                 joint_tensor_value=v[:, -txt_len:cu_seqlens_kv[1], :, :],
                 joint_strategy="rear",
             )
-            attn2, *_ = _flash_attn_forward(
-                q[:,cu_seqlens_q[1]:],
-                k[:,cu_seqlens_kv[1]:],
-                v[:,cu_seqlens_kv[1]:],
-                dropout_p=0.0,
-                softmax_scale=txt_q.shape[-1] ** (-0.5),
-                causal=False,
-                window_size_left=-1,
-                window_size_right=-1,
-                softcap=0.0,
-                alibi_slopes=None,
-                return_softmax=False,
-            )
+            if flash_attn.__version__ >= '2.7.0':
+                attn2, *_ = _flash_attn_forward(
+                    q[:,cu_seqlens_q[1]:],
+                    k[:,cu_seqlens_kv[1]:],
+                    v[:,cu_seqlens_kv[1]:],
+                    dropout_p=0.0,
+                    softmax_scale=txt_q.shape[-1] ** (-0.5),
+                    causal=False,
+                    window_size_left=-1,
+                    window_size_right=-1,
+                    softcap=0.0,
+                    alibi_slopes=None,
+                    return_softmax=False,
+                )
+            else:
+                attn2, *_ = _flash_attn_forward(
+                    q[:,cu_seqlens_q[1]:],
+                    k[:,cu_seqlens_kv[1]:],
+                    v[:,cu_seqlens_kv[1]:],
+                    dropout_p=0.0,
+                    softmax_scale=txt_q.shape[-1] ** (-0.5),
+                    causal=False,
+                    window_size=(-1, -1),
+                    softcap=0.0,
+                    alibi_slopes=None,
+                    return_softmax=False,
+                )
             attn = torch.cat([attn1, attn2], dim=1)
             b, s, a, d = attn.shape
             attn = attn.reshape(b, s, -1)
