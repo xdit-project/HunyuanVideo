@@ -172,7 +172,7 @@ The following table shows the requirements for running HunyuanVideo model (batch
 | HunyuanVideo   |        544px960px129f           |       30       |       45GB        |
 
 * An NVIDIA GPU with CUDA support is required. 
-  * We have tested on a single H800/H20 GPU.
+  * We have tested on a single GPU.
   * **Minimum**: The minimum GPU memory required is 60GB for 720px1280px129f and 45G for 544px960px129f.
   * **Recommended**: We recommend using a GPU with 80GB of memory for better generation quality.
 * Tested operating system: Linux
