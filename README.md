@@ -46,7 +46,7 @@ The video is heavily compressed due to compliance of GitHub policy. The high qua
 - HunyuanVideo (Text-to-Video Model)
   - [x] Inference 
   - [x] Checkpoints
-  - [x] Multi-gpu Sequence Parallel inference
+  - [x] Multi-gpus Sequence Parallel inference
   - [ ] Penguin Video Benchmark
   - [ ] Web Demo (Gradio) 
   - [ ] ComfyUI
