@@ -51,7 +51,7 @@
   - [ ] Web Demo (Gradio) 
   - [ ] ComfyUI
   - [ ] Diffusers 
-  - [ ] 多GPU PipeFuison并行推理 (更低显存需求)
+  - [ ] 多GPU PipeFusion并行推理 (更低显存需求)
 - HunyuanVideo (图生视频模型)
   - [ ] 推理代码 
   - [ ] 模型权重 
