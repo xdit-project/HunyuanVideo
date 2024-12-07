@@ -356,14 +356,14 @@ You can change the `--ulysses-degree` and `--ring-degree` to control the paralle
 </thead>
 <tbody>
 <tr>
-    <td>H100</td>
+    <td>Type 1 (80GB)</td>
     <td>1904.08</td>
     <td>514.08</td>
     <td>337.58</td>
 </tr>
 <tr>
-    <td>H20</td>
-    <td>6,639.17</td>
+    <td>Type 2 (80GB)</td>
+    <td>6639.17</td>
     <td>1762.86</td>
     <td>940.97</td>
 </tr>
