@@ -38,7 +38,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 The video is heavily compressed due to compliance of GitHub policy. The high quality version can be downloaded from [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
 
 ## 🔥🔥🔥 News!!
-* Dec 6, 2024: 🤗 We release the parallel inference code for HunyuanVideo powered by [xDiT](https://github.com/xdit-project/xDiT).
+* Dec 7, 2024: 🤗 We release the parallel inference code for HunyuanVideo powered by [xDiT](https://github.com/xdit-project/xDiT).
 * Dec 3, 2024: 🤗 We release the inference code and model weights of HunyuanVideo.
 
 ## 📑 Open-source Plan
@@ -270,12 +270,12 @@ We list some more useful configurations for easy usage:
 ## Parallel Inference on Multiple GPUs by xDiT
 
 [xDiT](https://github.com/xdit-project/xDiT) is a Scalable Inference Engine for Diffusion Transformers (DiTs) on multi-GPU Clusters.
-It has successfully provide low latency parallel infernece solution for a varitey of DiTs models, including mochi-1, CogVideoX, Flux.1, SD3, etc. This repo adoped the [Unified Sequence Parallelism (USP)](https://arxiv.org/abs/2405.07719) APIs for parallel inference of the HunyuanVideo model.
+It has successfully provided low-latency parallel inference solutions for a variety of DiTs models, including mochi-1, CogVideoX, Flux.1, SD3, etc. This repo adopted the [Unified Sequence Parallelism (USP)](https://arxiv.org/abs/2405.07719) APIs for parallel inference of the HunyuanVideo model.
 
 ### Install Dependencies Compatible with xDiT
 
 ```
-# 1. create a black conda environment
+# 1. Create a black conda environment
 conda create -n hunyuanxdit python==3.10.9
 conda activate hunyuanxdit
 
