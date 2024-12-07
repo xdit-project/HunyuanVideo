@@ -46,18 +46,18 @@
 - HunyuanVideo (文生视频模型)
   - [x] 推理代码
   - [x] 模型权重 
-  - [x] Penguin Video 基准测试集
-  - [x] 多GPU序列并行推理 
-  - [ ] Gradio
+  - [x] 多GPU序列并行推理（GPU 越多，推理速度越快）
+  - [ ] Penguin Video 基准测试集 
+  - [ ] Web Demo (Gradio) 
   - [ ] ComfyUI
   - [ ] Diffusers 
-  - [ ] 多GPU PipeFuison并行推理 (低显存需求)
+  - [ ] 多GPU PipeFuison并行推理 (更低显存需求)
 - HunyuanVideo (图生视频模型)
   - [ ] 推理代码 
   - [ ] 模型权重 
 
 ## 目录
-- [HunyuanVideo: A Systematic Framework For Large Video Generation Model](#hunyuanvideo--a-systematic-framework-for-large-video-generation-model)
+- [HunyuanVideo: A Systematic Framework For Large Video Generation Model](#hunyuanvideo-a-systematic-framework-for-large-video-generation-model)
   - [🎥 作品展示](#-作品展示)
   - [🔥🔥🔥 更新!!](#-更新)
   - [📑 开源计划](#-开源计划)
@@ -71,14 +71,19 @@
     - [**Prompt 改写**](#prompt-改写)
   - [📈 能力评估](#-能力评估)
   - [📜 运行配置](#-运行配置)
-  - [🛠️ 安装和依赖](#-安装和依赖)
+  - [🛠️ 安装和依赖](#️-安装和依赖)
     - [Linux 安装指引](#linux-安装指引)
   - [🧱 下载预训练模型](#-下载预训练模型)
   - [🔑 推理](#-推理)
     - [使用命令行](#使用命令行)
     - [更多配置](#更多配置)
+  - [🚀 使用 xDiT 实现多卡并行推理](#-使用-xdit-实现多卡并行推理)
+    - [安装与 xDiT 兼容的依赖项](#安装与-xdit-兼容的依赖项)
+    - [使用命令行](#使用命令行-1)
   - [🔗 BibTeX](#-bibtex)
+  - [🧩 使用 HunyuanVideo 的项目](#-使用-hunyuanvideo-的项目)
   - [致谢](#致谢)
+  - [Star 趋势](#star-趋势)
 ---
 
 ## **摘要**
@@ -186,16 +191,17 @@ cd HunyuanVideo
 我们推理使用 CUDA 11.8 或 12.0+ 的版本。
 
 ```shell
-# 1. 准备 conda 环境
+# 1. Prepare conda environment
 conda env create -f environment.yml
 
-# 2. 激活环境
+# 2. Activate the environment
 conda activate HunyuanVideo
 
-# 3. 安装 pip 依赖
+# 3. Install pip dependencies
 python -m pip install -r requirements.txt
 
-# 4. 安装 flash attention v2 用于加速 (要求 CUDA 11.8 或更高)
+# 4. Install flash attention v2 for acceleration (requires CUDA 11.8 or above)
+python -m pip install ninja
 python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.5.9.post1
 ```
 
@@ -256,7 +262,7 @@ python3 sample_video.py \
 |     `--save-path`      | ./results |     保存路径      |
 
 
-## 使用 xDiT 实现多卡并行推理
+## 🚀 使用 xDiT 实现多卡并行推理
 
 [xDiT](https://github.com/xdit-project/xDiT) 是一个针对多 GPU 集群的扩展推理引擎，用于扩展 Transformers（DiTs）。
 它成功为各种 DiT 模型（包括 mochi-1、CogVideoX、Flux.1、SD3 等）提供了低延迟的并行推理解决方案。该存储库采用了 [Unified Sequence Parallelism (USP)](https://arxiv.org/abs/2405.07719) API 用于混元视频模型的并行推理。
@@ -330,6 +336,29 @@ torchrun --nproc_per_node=8 sample_video_parallel.py \
 | 720 720              | 129            | 3x1,1x3                          | 3                |
 
 </details>
+
+<p align="center">
+<table align="center">
+<thead>
+<tr>
+    <th colspan="4">在 8xGPU上生成1280x720 (129 帧 50 步)的时耗 (秒)  </th>
+</tr>
+<tr>
+    <th>1</th>
+    <th>4</th>
+    <th>8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <th>1904.08</th>
+    <th>514.08</th>
+    <th>337.58</th>
+</tr>
+
+</tbody>
+</table>
+</p>
 
 
 ## 🔗 BibTeX
