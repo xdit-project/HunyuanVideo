@@ -11,6 +11,7 @@ def parse_args(namespace=None):
     parser = add_extra_models_args(parser)
     parser = add_denoise_schedule_args(parser)
     parser = add_inference_args(parser)
+    parser = add_parallel_args(parser)
 
     args = parser.parse_args(namespace=namespace)
     args = sanity_check_args(args)
@@ -349,6 +350,26 @@ def add_inference_args(parser: argparse.ArgumentParser):
         "--reproduce",
         action="store_true",
         help="Enable reproducibility by setting random seeds and deterministic algorithms.",
+    )
+
+    return parser
+
+
+def add_parallel_args(parser: argparse.ArgumentParser):
+    group = parser.add_argument_group(title="Parallel args")
+
+    # ======================== Model loads ========================
+    group.add_argument(
+        "--ulysses-degree",
+        type=int,
+        default=1,
+        help="Ulysses degree.",
+    )
+    group.add_argument(
+        "--ring-degree",
+        type=int,
+        default=1,
+        help="Ulysses degree.",
     )
 
     return parser

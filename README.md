@@ -38,6 +38,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 The video is heavily compressed due to compliance of GitHub policy. The high quality version can be downloaded from [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
 
 ## 🔥🔥🔥 News!!
+* Dec 6, 2024: 🤗 We release the parallel inference code for HunyuanVideo powered by [xDiT](https://github.com/xdit-project/xDiT).
 * Dec 3, 2024: 🤗 We release the inference code and model weights of HunyuanVideo.
 
 ## 📑 Open-source Plan
@@ -45,11 +46,12 @@ The video is heavily compressed due to compliance of GitHub policy. The high qua
 - HunyuanVideo (Text-to-Video Model)
   - [x] Inference 
   - [x] Checkpoints
-  - [ ] Multi-gpu inference
+  - [x] Multi-gpus Sequence Parallel inference
   - [ ] Penguin Video Benchmark
   - [ ] Web Demo (Gradio) 
   - [ ] ComfyUI
   - [ ] Diffusers 
+  - [ ] Multi-gpus PipeFuison inference (Low Memory Requirmenets)
 - HunyuanVideo (Image-to-Video Model)
   - [ ] Inference 
   - [ ] Checkpoints 
@@ -264,6 +266,105 @@ We list some more useful configurations for easy usage:
 |  `--use-cpu-offload`   |   False   |    Use CPU offload for the model load to save more memory, necessary for high-res video generation    |
 |     `--save-path`      | ./results |     Path to save the generated video      |
 
+
+## Parallel Inference on Multiple GPUs by xDiT
+
+[xDiT](https://github.com/xdit-project/xDiT) is a Scalable Inference Engine for Diffusion Transformers (DiTs) on multi-GPU Clusters.
+It has successfully provide low latency parallel infernece solution for a varitey of DiTs models, including mochi-1, CogVideoX, Flux.1, SD3, etc. This repo adoped the [Unified Sequence Parallelism (USP)](https://arxiv.org/abs/2405.07719) APIs for parallel inference of the HunyuanVideo model.
+
+### Install Dependencies Compatible with xDiT
+
+```
+# 1. create a black conda environment
+conda create -n hunyuanxdit python==3.10.9
+conda activate hunyuanxdit
+
+# 3. Install PyTorch component with CUDA 11.8
+conda install pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0  pytorch-cuda=11.8 -c pytorch -c nvidia
+
+# 3. Install pip dependencies
+python -m pip install -r requirements_xdit.txt
+```
+
+You can skip the above steps and pull the pre-built docker image directly, which is built from [docker/Dockerfile_xDiT](./docker/Dockerfile_xDiT)
+
+```
+docker pull thufeifeibear/hunyuanvideo:latest
+```
+
+### Using Command Line
+
+For example, to generate a video with 8 GPUs, you can use the following command:
+
+```bash
+cd HunyuanVideo
+
+torchrun --nproc_per_node=8 sample_video.py \
+    --video-size 1280 720 \
+    --video-length 129 \
+    --infer-steps 50 \
+    --prompt "A cat walks on the grass, realistic style." \
+    --flow-reverse \
+    --seed 42 \
+    --ulysses-degree 8 \
+    --ring-degree 1 \
+    --save-path ./results
+```
+
+You can change the `--ulysses-degree` and `--ring-degree` to control the parallel configurations for the best performance. The valid parallel configurations are shown in the following table.
+
+<details>
+<summary>Supported Parallel Configurations (Click to expand)</summary>
+
+|     --video-size     | --video-length | --ulysses-degree x --ring-degree | --nproc_per_node |
+|----------------------|----------------|----------------------------------|------------------|
+| 1280 720 or 720 1280 | 129            | 8x1,4x2,2x4,1x8                  | 8                |
+| 1280 720 or 720 1280 | 129            | 1x5                              | 5                |
+| 1280 720 or 720 1280 | 129            | 4x1,2x2,1x4                      | 4                |
+| 1280 720 or 720 1280 | 129            | 3x1,1x3                          | 3                |
+| 1280 720 or 720 1280 | 129            | 2x1,1x2                          | 2                |
+| 1104 832 or 832 1104 | 129            | 4x1,2x2,1x4                      | 4                |
+| 1104 832 or 832 1104 | 129            | 3x1,1x3                          | 3                |
+| 1104 832 or 832 1104 | 129            | 2x1,1x2                          | 2                |
+| 960 960              | 129            | 6x1,3x2,2x3,1x6                  | 6                |
+| 960 960              | 129            | 4x1,2x2,1x4                      | 4                |
+| 960 960              | 129            | 3x1,1x3                          | 3                |
+| 960 960              | 129            | 1x2,2x1                          | 2                |
+| 960 544 or 544 960   | 129            | 6x1,3x2,2x3,1x6                  | 6                |
+| 960 544 or 544 960   | 129            | 4x1,2x2,1x4                      | 4                |
+| 960 544 or 544 960   | 129            | 3x1,1x3                          | 3                |
+| 960 544 or 544 960   | 129            | 1x2,2x1                          | 2                |
+| 832 624 or 624 832   | 129            | 4x1,2x2,1x4                      | 4                |
+| 624 832 or 624 832   | 129            | 3x1,1x3                          | 3                |
+| 832 624 or 624 832   | 129            | 2x1,1x2                          | 2                |
+| 720 720              | 129            | 1x5                              | 5                |
+| 720 720              | 129            | 3x1,1x3                          | 3                |
+
+</details>
+
+
+<p align="center">
+<table align="center">
+<thead>
+<tr>
+    <th colspan="4">Latency (Sec) for 1280x720 (129 frames 50 steps) on 8xGPU</th>
+</tr>
+<tr>
+    <th>1</th>
+    <th>4</th>
+    <th>8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <th>1904.08</th>
+    <th>514.08</th>
+    <th>337.58</th>
+</tr>
+
+</tbody>
+</table>
+</p>
 
 ## 🔗 BibTeX
 If you find [HunyuanVideo](https://arxiv.org/abs/2412.03603) useful for your research and applications, please cite using this BibTeX:

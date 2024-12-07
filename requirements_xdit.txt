@@ -1,6 +1,5 @@
-torchvision==0.16.1
 opencv-python==4.9.0.80
-diffusers==0.30.2
+diffusers==0.31.0
 transformers==4.46.3
 tokenizers==0.20.3
 accelerate==1.1.1
@@ -12,3 +11,6 @@ loguru==0.7.2
 imageio==2.34.0
 imageio-ffmpeg==0.5.1
 safetensors==0.4.3
+ninja
+flash-attn==2.6.3
+xfuser==0.4.0
