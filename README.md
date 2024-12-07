@@ -46,20 +46,20 @@ The video is heavily compressed due to compliance of GitHub policy. The high qua
 - HunyuanVideo (Text-to-Video Model)
   - [x] Inference 
   - [x] Checkpoints
-  - [x] Multi-gpus Sequence Parallel inference
+  - [x] Multi-gpus Sequence Parallel inference (Faster inference speed on more gpus)
   - [ ] Penguin Video Benchmark
   - [ ] Web Demo (Gradio) 
   - [ ] ComfyUI
   - [ ] Diffusers 
-  - [ ] Multi-gpus PipeFusion inference (Low Memory Requirmenets)
+  - [ ] Multi-gpus PipeFusion inference (Low memory requirmenets)
 - HunyuanVideo (Image-to-Video Model)
   - [ ] Inference 
   - [ ] Checkpoints 
 
 ## Contents
-- [HunyuanVideo: A Systematic Framework For Large Video Generation Model](#hunyuanvideo--a-systematic-framework-for-large-video-generation-model)
+- [HunyuanVideo: A Systematic Framework For Large Video Generation Model](#hunyuanvideo-a-systematic-framework-for-large-video-generation-model)
   - [🎥 Demo](#-demo)
-  - [🔥🔥🔥 News!!](#-news!!)
+  - [🔥🔥🔥 News!!](#-news)
   - [📑 Open-source Plan](#-open-source-plan)
   - [Contents](#contents)
   - [**Abstract**](#abstract)
@@ -71,14 +71,19 @@ The video is heavily compressed due to compliance of GitHub policy. The high qua
     - [**Prompt Rewrite**](#prompt-rewrite)
   - [📈 Comparisons](#-comparisons)
   - [📜 Requirements](#-requirements)
-  - [🛠️ Dependencies and Installation](#-dependencies-and-installation)
+  - [🛠️ Dependencies and Installation](#️-dependencies-and-installation)
     - [Installation Guide for Linux](#installation-guide-for-linux)
   - [🧱 Download Pretrained Models](#-download-pretrained-models)
-  - [🔑 Inference](#-inference)
+  - [🔑 Single-gpu Inference](#-single-gpu-inference)
     - [Using Command Line](#using-command-line)
     - [More Configurations](#more-configurations)
+  - [🚀 Parallel Inference on Multiple GPUs by xDiT](#-parallel-inference-on-multiple-gpus-by-xdit)
+    - [Install Dependencies Compatible with xDiT](#install-dependencies-compatible-with-xdit)
+    - [Using Command Line](#using-command-line-1)
   - [🔗 BibTeX](#-bibtex)
+  - [🧩 Projects that use HunyuanVideo](#-projects-that-use-hunyuanvideo)
   - [Acknowledgements](#acknowledgements)
+  - [Star History](#star-history)
 ---
 
 ## **Abstract**
@@ -226,7 +231,7 @@ docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyua
 
 The details of download pretrained models are shown [here](ckpts/README.md).
 
-## 🔑 Inference
+## 🔑 Single-gpu Inference
 We list the height/width/frame settings we support in the following table.
 
 |      Resolution       |           h/w=9:16           |    h/w=16:9     |     h/w=4:3     |     h/w=3:4     |     h/w=1:1     |
@@ -267,7 +272,7 @@ We list some more useful configurations for easy usage:
 |     `--save-path`      | ./results |     Path to save the generated video      |
 
 
-## Parallel Inference on Multiple GPUs by xDiT
+## 🚀 Parallel Inference on Multiple GPUs by xDiT
 
 [xDiT](https://github.com/xdit-project/xDiT) is a Scalable Inference Engine for Diffusion Transformers (DiTs) on multi-GPU Clusters.
 It has successfully provided low-latency parallel inference solutions for a variety of DiTs models, including mochi-1, CogVideoX, Flux.1, SD3, etc. This repo adopted the [Unified Sequence Parallelism (USP)](https://arxiv.org/abs/2405.07719) APIs for parallel inference of the HunyuanVideo model.
