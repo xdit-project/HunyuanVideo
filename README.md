@@ -345,10 +345,9 @@ You can change the `--ulysses-degree` and `--ring-degree` to control the paralle
 <table align="center">
 <thead>
 <tr>
-    <th colspan="4">Latency (Sec) for 1280x720 (129 frames 50 steps) Ulysses=#GPU</th>
+    <th colspan="4">Latency (Sec) for 1280x720 (129 frames 50 steps) on 8xGPU</th>
 </tr>
 <tr>
-    <th>GPUs</th>
     <th>1</th>
     <th>4</th>
     <th>8</th>
@@ -356,17 +355,11 @@ You can change the `--ulysses-degree` and `--ring-degree` to control the paralle
 </thead>
 <tbody>
 <tr>
-    <td>Type 1 (80GB)</td>
-    <td>1904.08</td>
-    <td>514.08</td>
-    <td>337.58</td>
+    <th>1904.08</th>
+    <th>514.08</th>
+    <th>337.58</th>
 </tr>
-<tr>
-    <td>Type 2 (80GB)</td>
-    <td>6639.17</td>
-    <td>1762.86</td>
-    <td>940.97</td>
-</tr>
+
 </tbody>
 </table>
 </p>
