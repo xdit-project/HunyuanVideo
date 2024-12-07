@@ -47,9 +47,11 @@
   - [x] 推理代码
   - [x] 模型权重 
   - [x] Penguin Video 基准测试集
+  - [x] 多GPU序列并行推理 
   - [ ] Gradio
   - [ ] ComfyUI
   - [ ] Diffusers 
+  - [ ] 多GPU PipeFuison并行推理 (低显存需求)
 - HunyuanVideo (图生视频模型)
   - [ ] 推理代码 
   - [ ] 模型权重 
