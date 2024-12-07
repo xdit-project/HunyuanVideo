@@ -51,7 +51,7 @@ The video is heavily compressed due to compliance of GitHub policy. The high qua
   - [ ] Web Demo (Gradio) 
   - [ ] ComfyUI
   - [ ] Diffusers 
-  - [ ] Multi-gpus PipeFuison inference (Low Memory Requirmenets)
+  - [ ] Multi-gpus PipeFusion inference (Low Memory Requirmenets)
 - HunyuanVideo (Image-to-Video Model)
   - [ ] Inference 
   - [ ] Checkpoints 
