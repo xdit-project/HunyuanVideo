@@ -168,8 +168,8 @@ The following table shows the requirements for running HunyuanVideo model (batch
 
 |     Model    |  Setting<br/>(height/width/frame) | Denoising step | GPU Peak Memory  |
 |:------------:|:--------------------------------:|:--------------:|:----------------:|
-| HunyuanVideo   |        720px1280px129f          |       30       |       60GB        |
-| HunyuanVideo   |        544px960px129f           |       30       |       45GB        |
+| HunyuanVideo   |        720px1280px129f          |       50       |       60GB        |
+| HunyuanVideo   |        544px960px129f           |       50       |       45GB        |
 
 * An NVIDIA GPU with CUDA support is required. 
   * The model is tested on a single 80G GPU.
