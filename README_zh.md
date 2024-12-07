@@ -161,10 +161,10 @@ Prompt 改写模型可以直接使用 [Hunyuan-Large](https://github.com/Tencent
 
 下表列出了运行 HunyuanVideo 模型使用文本生成视频的推荐配置（batch size = 1）：
 
-|     模型      | 分辨率<br/>(height/width/frame) | 去噪步数 | 峰值显存  |
-|:--------------:|:--------------------------------:|:--------------:|:----------------:|
-| HunyuanVideo   |         720px1280px129f          |       30       |       60G        |
-| HunyuanVideo   |          544px960px129f          |       30       |       45G        |
+|     模型      | 分辨率<br/>(height/width/frame) | 峰值显存  |
+|:--------------:|:--------------------------------:|:----------------:|
+| HunyuanVideo   |         720px1280px129f          |       60G        |
+| HunyuanVideo   |          544px960px129f          |       45G        |
 
 * 本项目适用于使用 NVIDIA GPU 和支持 CUDA 的设备
   * 模型在单张 80G GPU 上测试
