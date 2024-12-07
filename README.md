@@ -38,7 +38,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 The video is heavily compressed due to compliance of GitHub policy. The high quality version can be downloaded from [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
 
 ## 🔥🔥🔥 News!!
-* Dec 6, 2024: 🤗 We release the parallel inference code for HunyuanVideo powered by [xDiT](https://github.com/xdit-project/xDiT).
+* Dec 7, 2024: 🤗 We release the parallel inference code for HunyuanVideo powered by [xDiT](https://github.com/xdit-project/xDiT).
 * Dec 3, 2024: 🤗 We release the inference code and model weights of HunyuanVideo.
 
 ## 📑 Open-source Plan
@@ -46,20 +46,20 @@ The video is heavily compressed due to compliance of GitHub policy. The high qua
 - HunyuanVideo (Text-to-Video Model)
   - [x] Inference 
   - [x] Checkpoints
-  - [x] Multi-gpus Sequence Parallel inference
+  - [x] Multi-gpus Sequence Parallel inference (Faster inference speed on more gpus)
   - [ ] Penguin Video Benchmark
   - [ ] Web Demo (Gradio) 
   - [ ] ComfyUI
   - [ ] Diffusers 
-  - [ ] Multi-gpus PipeFuison inference (Low Memory Requirmenets)
+  - [ ] Multi-gpus PipeFusion inference (Low memory requirmenets)
 - HunyuanVideo (Image-to-Video Model)
   - [ ] Inference 
   - [ ] Checkpoints 
 
 ## Contents
-- [HunyuanVideo: A Systematic Framework For Large Video Generation Model](#hunyuanvideo--a-systematic-framework-for-large-video-generation-model)
+- [HunyuanVideo: A Systematic Framework For Large Video Generation Model](#hunyuanvideo-a-systematic-framework-for-large-video-generation-model)
   - [🎥 Demo](#-demo)
-  - [🔥🔥🔥 News!!](#-news!!)
+  - [🔥🔥🔥 News!!](#-news)
   - [📑 Open-source Plan](#-open-source-plan)
   - [Contents](#contents)
   - [**Abstract**](#abstract)
@@ -71,14 +71,19 @@ The video is heavily compressed due to compliance of GitHub policy. The high qua
     - [**Prompt Rewrite**](#prompt-rewrite)
   - [📈 Comparisons](#-comparisons)
   - [📜 Requirements](#-requirements)
-  - [🛠️ Dependencies and Installation](#-dependencies-and-installation)
+  - [🛠️ Dependencies and Installation](#️-dependencies-and-installation)
     - [Installation Guide for Linux](#installation-guide-for-linux)
   - [🧱 Download Pretrained Models](#-download-pretrained-models)
-  - [🔑 Inference](#-inference)
+  - [🔑 Single-gpu Inference](#-single-gpu-inference)
     - [Using Command Line](#using-command-line)
     - [More Configurations](#more-configurations)
+  - [🚀 Parallel Inference on Multiple GPUs by xDiT](#-parallel-inference-on-multiple-gpus-by-xdit)
+    - [Install Dependencies Compatible with xDiT](#install-dependencies-compatible-with-xdit)
+    - [Using Command Line](#using-command-line-1)
   - [🔗 BibTeX](#-bibtex)
+  - [🧩 Projects that use HunyuanVideo](#-projects-that-use-hunyuanvideo)
   - [Acknowledgements](#acknowledgements)
+  - [Star History](#star-history)
 ---
 
 ## **Abstract**
@@ -168,10 +173,10 @@ To evaluate the performance of HunyuanVideo, we selected five strong baselines f
 
 The following table shows the requirements for running HunyuanVideo model (batch size = 1) to generate videos:
 
-|     Model    |  Setting<br/>(height/width/frame) | Denoising step | GPU Peak Memory  |
-|:------------:|:--------------------------------:|:--------------:|:----------------:|
-| HunyuanVideo   |        720px1280px129f          |       50       |       60GB        |
-| HunyuanVideo   |        544px960px129f           |       50       |       45GB        |
+|     Model    |  Setting<br/>(height/width/frame) | GPU Peak Memory  |
+|:------------:|:--------------------------------:|:----------------:|
+| HunyuanVideo   |        720px1280px129f          |       60GB        |
+| HunyuanVideo   |        544px960px129f           |       45GB        |
 
 * An NVIDIA GPU with CUDA support is required. 
   * The model is tested on a single 80G GPU.
@@ -226,7 +231,7 @@ docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyua
 
 The details of download pretrained models are shown [here](ckpts/README.md).
 
-## 🔑 Inference
+## 🔑 Single-gpu Inference
 We list the height/width/frame settings we support in the following table.
 
 |      Resolution       |           h/w=9:16           |    h/w=16:9     |     h/w=4:3     |     h/w=3:4     |     h/w=1:1     |
@@ -267,15 +272,15 @@ We list some more useful configurations for easy usage:
 |     `--save-path`      | ./results |     Path to save the generated video      |
 
 
-## Parallel Inference on Multiple GPUs by xDiT
+## 🚀 Parallel Inference on Multiple GPUs by xDiT
 
 [xDiT](https://github.com/xdit-project/xDiT) is a Scalable Inference Engine for Diffusion Transformers (DiTs) on multi-GPU Clusters.
-It has successfully provide low latency parallel infernece solution for a varitey of DiTs models, including mochi-1, CogVideoX, Flux.1, SD3, etc. This repo adoped the [Unified Sequence Parallelism (USP)](https://arxiv.org/abs/2405.07719) APIs for parallel inference of the HunyuanVideo model.
+It has successfully provided low-latency parallel inference solutions for a variety of DiTs models, including mochi-1, CogVideoX, Flux.1, SD3, etc. This repo adopted the [Unified Sequence Parallelism (USP)](https://arxiv.org/abs/2405.07719) APIs for parallel inference of the HunyuanVideo model.
 
 ### Install Dependencies Compatible with xDiT
 
 ```
-# 1. create a black conda environment
+# 1. Create a black conda environment
 conda create -n hunyuanxdit python==3.10.9
 conda activate hunyuanxdit
 
