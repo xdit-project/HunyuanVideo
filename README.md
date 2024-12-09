@@ -356,6 +356,7 @@ You can change the `--ulysses-degree` and `--ring-degree` to control the paralle
 </tr>
 <tr>
     <th>1</th>
+    <th>2</th>
     <th>4</th>
     <th>8</th>
 </tr>
@@ -363,8 +364,9 @@ You can change the `--ulysses-degree` and `--ring-degree` to control the paralle
 <tbody>
 <tr>
     <th>1904.08</th>
-    <th>514.08</th>
-    <th>337.58</th>
+    <th>934.09 (2.04x)</th>
+    <th>514.08 (3.70x)</th>
+    <th>337.58 (5.64x)</th>
 </tr>
 
 </tbody>
