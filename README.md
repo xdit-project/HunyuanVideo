@@ -254,6 +254,14 @@ python3 sample_video.py \
     --save-path ./results
 ```
 
+### Run a Gradio Server
+```bash
+python3 gradio_server.py --flow-reverse
+
+# set SERVER_NAME and SERVER_PORT manually
+# SERVER_NAME=0.0.0.0 SERVER_PORT=8081 python3 gradio_server.py --flow-reverse
+```
+
 ### More Configurations
 
 We list some more useful configurations for easy usage:
