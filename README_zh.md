@@ -345,6 +345,7 @@ torchrun --nproc_per_node=8 sample_video_parallel.py \
 </tr>
 <tr>
     <th>1</th>
+    <th>2</th>
     <th>4</th>
     <th>8</th>
 </tr>
@@ -352,8 +353,9 @@ torchrun --nproc_per_node=8 sample_video_parallel.py \
 <tbody>
 <tr>
     <th>1904.08</th>
-    <th>514.08</th>
-    <th>337.58</th>
+    <th>934.09 (2.04x)</th>
+    <th>514.08 (3.70x)</th>
+    <th>337.58 (5.64x)</th>
 </tr>
 
 </tbody>
