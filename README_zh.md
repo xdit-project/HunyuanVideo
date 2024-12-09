@@ -38,7 +38,7 @@
 注：由于 GitHub 的政策限制，上面的视频质量被大幅压缩。你可以从 [这里](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material) 下载高质量版本。
 
 ## 🔥🔥🔥 更新!!
-* 2024年12月03日: 🤗 开源 HunyuanVideo 多卡并行推理代码，由[xDiT](https://github.com/xdit-project/xDiT)提供。
+* 2024年12月03日: 🚀 开源 HunyuanVideo 多卡并行推理代码，由[xDiT](https://github.com/xdit-project/xDiT)提供。
 * 2024年12月03日: 🤗 开源 HunyuanVideo 文生视频的推理代码和模型权重。
 
 ## 📑 开源计划
@@ -47,8 +47,8 @@
   - [x] 推理代码
   - [x] 模型权重 
   - [x] 多GPU序列并行推理（GPU 越多，推理速度越快）
+  - [x] Web Demo (Gradio) 
   - [ ] Penguin Video 基准测试集 
-  - [ ] Web Demo (Gradio) 
   - [ ] ComfyUI
   - [ ] Diffusers 
   - [ ] 多GPU PipeFusion并行推理 (更低显存需求)
@@ -76,6 +76,7 @@
   - [🧱 下载预训练模型](#-下载预训练模型)
   - [🔑 推理](#-推理)
     - [使用命令行](#使用命令行)
+    - [运行gradio服务](#运行gradio服务)
     - [更多配置](#更多配置)
   - [🚀 使用 xDiT 实现多卡并行推理](#-使用-xdit-实现多卡并行推理)
     - [安装与 xDiT 兼容的依赖项](#安装与-xdit-兼容的依赖项)

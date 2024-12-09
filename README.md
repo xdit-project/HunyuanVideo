@@ -38,7 +38,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 The video is heavily compressed due to compliance of GitHub policy. The high quality version can be downloaded from [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
 
 ## 🔥🔥🔥 News!!
-* Dec 7, 2024: 🤗 We release the parallel inference code for HunyuanVideo powered by [xDiT](https://github.com/xdit-project/xDiT).
+* Dec 7, 2024: 🚀 We release the parallel inference code for HunyuanVideo powered by [xDiT](https://github.com/xdit-project/xDiT).
 * Dec 3, 2024: 🤗 We release the inference code and model weights of HunyuanVideo.
 
 ## 📑 Open-source Plan
@@ -47,8 +47,8 @@ The video is heavily compressed due to compliance of GitHub policy. The high qua
   - [x] Inference 
   - [x] Checkpoints
   - [x] Multi-gpus Sequence Parallel inference (Faster inference speed on more gpus)
+  - [x] Web Demo (Gradio) 
   - [ ] Penguin Video Benchmark
-  - [ ] Web Demo (Gradio) 
   - [ ] ComfyUI
   - [ ] Diffusers 
   - [ ] Multi-gpus PipeFusion inference (Low memory requirmenets)
@@ -76,6 +76,7 @@ The video is heavily compressed due to compliance of GitHub policy. The high qua
   - [🧱 Download Pretrained Models](#-download-pretrained-models)
   - [🔑 Single-gpu Inference](#-single-gpu-inference)
     - [Using Command Line](#using-command-line)
+    - [Run a Gradio Server](#run-a-gradio-server)
     - [More Configurations](#more-configurations)
   - [🚀 Parallel Inference on Multiple GPUs by xDiT](#-parallel-inference-on-multiple-gpus-by-xdit)
     - [Install Dependencies Compatible with xDiT](#install-dependencies-compatible-with-xdit)
