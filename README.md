@@ -198,7 +198,7 @@ cd HunyuanVideo
 We provide an `environment.yml` file for setting up a Conda environment.
 Conda's installation instructions are available [here](https://docs.anaconda.com/free/miniconda/index.html).
 
-We recommend CUDA versions 11.8 and 12.0+.
+We recommend CUDA versions 12.4 or 11.8 for the manual installation.
 
 ```shell
 # 1. Prepare conda environment
@@ -212,19 +212,33 @@ python -m pip install -r requirements.txt
 
 # 4. Install flash attention v2 for acceleration (requires CUDA 11.8 or above)
 python -m pip install ninja
-python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.5.9.post1
+python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.6.3
+```
+
+In case of running into float point exception(core dump) on the specific GPU type, you may try the following solutions:
+
+```shell
+# Option 1: Making sure you have installed CUDA 12.4, CUBLAS>=12.4.5.8, and CUDNN>=9.00 (or simply using our CUDA 12 docker image).
+pip install nvidia-cublas-cu12==12.4.5.8
+export LD_LIBRARY_PATH=/opt/conda/lib/python3.8/site-packages/nvidia/cublas/lib/
+
+# Option 2: Forcing to explictly use the CUDA 11.8 compiled version of Pytorch and all the other packages
+pip uninstall -r requirements.txt  # uninstall all packages
+pip install torch==2.4.0 --index-url https://download.pytorch.org/whl/cu118
+pip install -r requirements.txt
+python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.6.3
 ```
 
 Additionally, HunyuanVideo also provides a pre-built Docker image. Use the following command to pull and run the docker image.
 
 ```shell
-# For CUDA 11
-docker pull hunyuanvideo/hunyuanvideo:cuda_11
-docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyuanvideo --security-opt=seccomp=unconfined --ulimit=stack=67108864 --ulimit=memlock=-1 --privileged hunyuanvideo/hunyuanvideo:cuda_11
-
-# For CUDA 12
+# For CUDA 12.4 (updated to avoid float point exception)
 docker pull hunyuanvideo/hunyuanvideo:cuda_12
 docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyuanvideo --security-opt=seccomp=unconfined --ulimit=stack=67108864 --ulimit=memlock=-1 --privileged hunyuanvideo/hunyuanvideo:cuda_12
+
+# For CUDA 11.8
+docker pull hunyuanvideo/hunyuanvideo:cuda_11
+docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyuanvideo --security-opt=seccomp=unconfined --ulimit=stack=67108864 --ulimit=memlock=-1 --privileged hunyuanvideo/hunyuanvideo:cuda_11
 ```
 
 
