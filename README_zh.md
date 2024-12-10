@@ -189,7 +189,7 @@ cd HunyuanVideo
 
 我们提供了 `environment.yml` 文件来设置 Conda 环境。Conda 的安装指南可以参考[这里](https://docs.anaconda.com/free/miniconda/index.html)。
 
-我们推理使用 CUDA 11.8 或 12.0+ 的版本。
+我们推理使用 CUDA 12.4 或 11.8 的版本。
 
 ```shell
 # 1. Prepare conda environment
@@ -203,18 +203,32 @@ python -m pip install -r requirements.txt
 
 # 4. Install flash attention v2 for acceleration (requires CUDA 11.8 or above)
 python -m pip install ninja
-python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.5.9.post1
+python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.6.3
+```
+
+如果在特定GPU型号上遭遇float point exception(core dump)问题，可尝试以下方案修复：
+
+```shell
+#选项1：确保已正确安装CUDA 12.4, CUBLAS>=12.4.5.8, and CUDNN>=9.00(或直接使用我们提供的CUDA12镜像)
+pip install nvidia-cublas-cu12==12.4.5.8
+export LD_LIBRARY_PATH=/opt/conda/lib/python3.8/site-packages/nvidia/cublas/lib/
+
+#选项2：强制显式使用CUDA11.8编译的Pytorch版本以及其他所有软件包
+pip uninstall -r requirements.txt  # 确保卸载所有依赖包
+pip install torch==2.4.0 --index-url https://download.pytorch.org/whl/cu118
+pip install -r requirements.txt
+python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.6.3
 ```
 
 另外，我们提供了一个预构建的 Docker 镜像，可以使用如下命令进行拉取和运行。
 ```shell
-# 用于 CUDA 11
-docker pull hunyuanvideo/hunyuanvideo:cuda_11
-docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyuanvideo --security-opt=seccomp=unconfined --ulimit=stack=67108864 --ulimit=memlock=-1 --privileged hunyuanvideo/hunyuanvideo:cuda_11
-
-# 用于 CUDA 12
+# 用于CUDA 12.4 (已更新避免float point exception)
 docker pull hunyuanvideo/hunyuanvideo:cuda_12
 docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyuanvideo --security-opt=seccomp=unconfined --ulimit=stack=67108864 --ulimit=memlock=-1 --privileged hunyuanvideo/hunyuanvideo:cuda_12
+
+# 用于CUDA 11.8
+docker pull hunyuanvideo/hunyuanvideo:cuda_11
+docker run -itd --gpus all --init --net=host --uts=host --ipc=host --name hunyuanvideo --security-opt=seccomp=unconfined --ulimit=stack=67108864 --ulimit=memlock=-1 --privileged hunyuanvideo/hunyuanvideo:cuda_11
 ```
 
 ## 🧱 下载预训练模型
