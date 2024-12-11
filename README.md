@@ -85,7 +85,6 @@ The video is heavily compressed due to compliance of GitHub policy. The high qua
     - [Run a Gradio Server](#run-a-gradio-server)
     - [More Configurations](#more-configurations)
   - [🚀 Parallel Inference on Multiple GPUs by xDiT](#-parallel-inference-on-multiple-gpus-by-xdit)
-    - [Install Dependencies Compatible with xDiT](#install-dependencies-compatible-with-xdit)
     - [Using Command Line](#using-command-line-1)
   - [🔗 BibTeX](#-bibtex)
   - [🧩 Projects that use HunyuanVideo](#-projects-that-use-hunyuanvideo)
