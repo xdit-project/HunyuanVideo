@@ -201,24 +201,32 @@ cd HunyuanVideo
 
 ### Installation Guide for Linux
 
-We provide an `environment.yml` file for setting up a Conda environment.
-Conda's installation instructions are available [here](https://docs.anaconda.com/free/miniconda/index.html).
-
 We recommend CUDA versions 12.4 or 11.8 for the manual installation.
 
+Conda's installation instructions are available [here](https://docs.anaconda.com/free/miniconda/index.html).
+
 ```shell
-# 1. Prepare conda environment
-conda env create -f environment.yml
+# 1. Create conda environment
+conda create -n HunyuanVideo python==3.10.9
 
 # 2. Activate the environment
 conda activate HunyuanVideo
 
-# 3. Install pip dependencies
+# 3. Install PyTorch and other dependencies using conda
+# For CUDA 11.8
+conda install pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 pytorch-cuda=11.8 -c pytorch -c nvidia
+# For CUDA 12.4
+conda install pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 pytorch-cuda=12.4 -c pytorch -c nvidia
+
+# 4. Install pip dependencies
 python -m pip install -r requirements.txt
 
-# 4. Install flash attention v2 for acceleration (requires CUDA 11.8 or above)
+# 5. Install flash attention v2 for acceleration (requires CUDA 11.8 or above)
 python -m pip install ninja
 python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.6.3
+
+# 6. Install xDiT for parallel inference (It is recommended to use torch 2.4.0 and flash-attn 2.6.3)
+python -m pip install xfuser==0.4.0
 ```
 
 In case of running into float point exception(core dump) on the specific GPU type, you may try the following solutions:
@@ -230,9 +238,12 @@ export LD_LIBRARY_PATH=/opt/conda/lib/python3.8/site-packages/nvidia/cublas/lib/
 
 # Option 2: Forcing to explictly use the CUDA 11.8 compiled version of Pytorch and all the other packages
 pip uninstall -r requirements.txt  # uninstall all packages
+pip uninstall -y xfuser
 pip install torch==2.4.0 --index-url https://download.pytorch.org/whl/cu118
 pip install -r requirements.txt
-python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.6.3
+pip install ninja
+pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.6.3
+pip install xfuser==0.4.0
 ```
 
 Additionally, HunyuanVideo also provides a pre-built Docker image. Use the following command to pull and run the docker image.
@@ -305,26 +316,6 @@ We list some more useful configurations for easy usage:
 
 [xDiT](https://github.com/xdit-project/xDiT) is a Scalable Inference Engine for Diffusion Transformers (DiTs) on multi-GPU Clusters.
 It has successfully provided low-latency parallel inference solutions for a variety of DiTs models, including mochi-1, CogVideoX, Flux.1, SD3, etc. This repo adopted the [Unified Sequence Parallelism (USP)](https://arxiv.org/abs/2405.07719) APIs for parallel inference of the HunyuanVideo model.
-
-### Install Dependencies Compatible with xDiT
-
-```
-# 1. Create a black conda environment
-conda create -n hunyuanxdit python==3.10.9
-conda activate hunyuanxdit
-
-# 3. Install PyTorch component with CUDA 11.8
-conda install pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0  pytorch-cuda=11.8 -c pytorch -c nvidia
-
-# 3. Install pip dependencies
-python -m pip install -r requirements_xdit.txt
-```
-
-You can skip the above steps and pull the pre-built docker image directly, which is built from [docker/Dockerfile_xDiT](./docker/Dockerfile_xDiT)
-
-```
-docker pull thufeifeibear/hunyuanvideo:latest
-```
 
 ### Using Command Line
 
