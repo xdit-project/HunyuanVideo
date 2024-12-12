@@ -41,7 +41,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
   <video src="https://github.com/user-attachments/assets/f37925a3-7d42-40c9-8a9b-5a010c7198e2" width="50%">
 </div>
 
-The video is heavily compressed due to compliance of GitHub policy. The high quality version can be downloaded from [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
+The video is heavily compressed to comply with GitHub's policy. The high-quality version can be downloaded from [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
 
 ## 🔥🔥🔥 News!!
 * Dec 7, 2024: 🚀 We release the parallel inference code for HunyuanVideo powered by [xDiT](https://github.com/xdit-project/xDiT).
@@ -53,11 +53,11 @@ The video is heavily compressed due to compliance of GitHub policy. The high qua
   - [x] Inference 
   - [x] Checkpoints
   - [x] Multi-gpus Sequence Parallel inference (Faster inference speed on more gpus)
-  - [x] Web Demo (Gradio) 
+  - [x] Web Demo (Gradio)
+  - [ ] Diffusers 
   - [ ] Penguin Video Benchmark
   - [ ] ComfyUI
-  - [ ] Diffusers 
-  - [ ] Multi-gpus PipeFusion inference (Low memory requirmenets)
+  - [ ] Multi-gpus PipeFusion inference (Low memory requirements)
 - HunyuanVideo (Image-to-Video Model)
   - [ ] Inference 
   - [ ] Checkpoints 
@@ -103,7 +103,7 @@ We conducted extensive experiments and implemented a series of targeted designs 
 HunyuanVideo is trained on a spatial-temporally
 compressed latent space, which is compressed through a Causal 3D VAE. Text prompts are encoded
 using a large language model, and used as the conditions. Taking Gaussian noise and the conditions as
-input, our generative model produces an output latent, which is then decoded to images or videos through
+input, our generative model produces a output latent, which is then decoded to images or videos through
 the 3D VAE decoder.
 <p align="center">
   <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/overall.png"  height=300>
@@ -122,15 +122,15 @@ overall model performance.
 </p>
 
 ### **MLLM Text Encoder**
-Some previous text-to-video models typically use pretrained CLIP and T5-XXL as text encoders where CLIP uses Transformer Encoder and T5 uses an Encoder-Decoder structure. In contrast, we utilize a pretrained Multimodal Large Language Model (MLLM) with a Decoder-Only structure as our text encoder, which has the following advantages: (i) Compared with T5, MLLM after visual instruction finetuning has better image-text alignment in the feature space, which alleviates the difficulty of instruction following in diffusion models; (ii)
-Compared with CLIP, MLLM has been demonstrated superior ability in image detail description
+Some previous text-to-video models typically use pre-trained CLIP and T5-XXL as text encoders where CLIP uses Transformer Encoder and T5 uses an Encoder-Decoder structure. In contrast, we utilize a pre-trained Multimodal Large Language Model (MLLM) with a Decoder-Only structure as our text encoder, which has the following advantages: (i) Compared with T5, MLLM after visual instruction finetuning has better image-text alignment in the feature space, which alleviates the difficulty of the instruction following in diffusion models; (ii)
+Compared with CLIP, MLLM has demonstrated superior ability in image detail description
 and complex reasoning; (iii) MLLM can play as a zero-shot learner by following system instructions prepended to user prompts, helping text features pay more attention to key information. In addition, MLLM is based on causal attention while T5-XXL utilizes bidirectional attention that produces better text guidance for diffusion models. Therefore, we introduce an extra bidirectional token refiner to enhance text features.
 <p align="center">
   <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/text_encoder.png"  height=275>
 </p>
 
 ### **3D VAE**
-HunyuanVideo trains a 3D VAE with CausalConv3D to compress pixel-space videos and images into a compact latent space. We set the compression ratios of video length, space and channel to 4, 8 and 16 respectively. This can significantly reduce the number of tokens for the subsequent diffusion transformer model, allowing us to train videos at the original resolution and frame rate.
+HunyuanVideo trains a 3D VAE with CausalConv3D to compress pixel-space videos and images into a compact latent space. We set the compression ratios of video length, space, and channel to 4, 8, and 16 respectively. This can significantly reduce the number of tokens for the subsequent diffusion transformer model, allowing us to train videos at the original resolution and frame rate.
 <p align="center">
   <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/3dvae.png"  height=150>
 </p>
@@ -167,10 +167,10 @@ To evaluate the performance of HunyuanVideo, we selected five strong baselines f
     <td>GEN-3 alpha (Web)</td> <td>&#10008</td> <td>6s</td> <td>47.7%</td> <td>54.7%</td> <td>97.5%</td> <td>27.4%</td> <td>4</td> 
 </tr> 
 <tr> 
-    <td>Luma1.6 (API)</td><td>&#10008</td> <td>5s</td> <td>57.6%</td> <td>44.2%</td> <td>94.1%</td> <td>24.8%</td> <td>6</td>
+    <td>Luma1.6 (API)</td><td>&#10008</td> <td>5s</td> <td>57.6%</td> <td>44.2%</td> <td>94.1%</td> <td>24.8%</td> <td>5</td>
 </tr>
 <tr> 
-    <td>CNTopC (Web)</td> <td>&#10008</td> <td>5s</td> <td>48.4%</td> <td>47.2%</td> <td>96.3%</td> <td>24.6%</td> <td>5</td>
+    <td>CNTopC (Web)</td> <td>&#10008</td> <td>5s</td> <td>48.4%</td> <td>47.2%</td> <td>96.3%</td> <td>24.6%</td> <td>6</td>
 </tr> 
 </tbody>
 </table>
@@ -293,7 +293,7 @@ We list some more useful configurations for easy usage:
 |     `--video-size`     | 720 1280  |      The size of the generated video      |
 |    `--video-length`    |    129    |     The length of the generated video     |
 |    `--infer-steps`     |    50     |     The number of steps for sampling      |
-| `--embedded-cfg-scale` |    6.0    |    Embeded  Classifier free guidance scale       |
+| `--embedded-cfg-scale` |    6.0    |    Embedded  Classifier free guidance scale       |
 |     `--flow-shift`     |    7.0    | Shift factor for flow matching schedulers |
 |     `--flow-reverse`   |    False  | If reverse, learning/sampling from t=1 -> t=0 |
 |        `--seed`        |     None  |   The random seed for generating video, if None, we init a random seed    |
