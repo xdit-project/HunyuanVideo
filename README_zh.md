@@ -39,10 +39,8 @@
 
 ## 🎥 作品展示
 <div align="center">
-  <video src="https://github.com/user-attachments/assets/f37925a3-7d42-40c9-8a9b-5a010c7198e2" width="50%">
+  <video width="70%" src="https://github.com/user-attachments/assets/22440764-0d7e-438e-a44d-d0dad1006d3d" poster="./assets/video_poster.png"> </video>
 </div>
-
-注：由于 GitHub 的政策限制，上面的视频质量被大幅压缩。你可以从 [这里](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material) 下载高质量版本。
 
 ## 🔥🔥🔥 更新!!
 * 2024年12月03日: 🚀 开源 HunyuanVideo 多卡并行推理代码，由[xDiT](https://github.com/xdit-project/xDiT)提供。

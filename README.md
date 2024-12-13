@@ -38,10 +38,9 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 
 ## 🎥 Demo
 <div align="center">
-  <video src="https://github.com/user-attachments/assets/f37925a3-7d42-40c9-8a9b-5a010c7198e2" width="50%">
+  <video src="https://github.com/user-attachments/assets/22440764-0d7e-438e-a44d-d0dad1006d3d" width="70%" poster="./assets/video_poster.png"> </video>
 </div>
 
-The video is heavily compressed to comply with GitHub's policy. The high-quality version can be downloaded from [here](https://aivideo.hunyuan.tencent.com/download/HunyuanVideo/material/demo.mov).
 
 ## 🔥🔥🔥 News!!
 * Dec 7, 2024: 🚀 We release the parallel inference code for HunyuanVideo powered by [xDiT](https://github.com/xdit-project/xDiT).
