@@ -128,7 +128,7 @@ and complex reasoning; (iii) MLLM can play as a zero-shot learner by following s
 </p>
 
 ### **3D VAE**
-HunyuanVideo trains a 3D VAE with CausalConv3D (First Proposed in Open-Sora-Plan ) to compress pixel-space videos and images into a compact latent space. We set the compression ratios of video length, space, and channel to 4, 8, and 16 respectively. This can significantly reduce the number of tokens for the subsequent diffusion transformer model, allowing us to train videos at the original resolution and frame rate.
+HunyuanVideo trains a 3D VAE with CausalConv3D (Also used in [Open-Sora-Plan](https://github.com/PKU-YuanGroup/Open-Sora-Plan) ) to compress pixel-space videos and images into a compact latent space. We set the compression ratios of video length, space, and channel to 4, 8, and 16 respectively. This can significantly reduce the number of tokens for the subsequent diffusion transformer model, allowing us to train videos at the original resolution and frame rate.
 <p align="center">
   <img src="https://raw.githubusercontent.com/Tencent/HunyuanVideo/refs/heads/main/assets/3dvae.png"  height=150>
 </p>
