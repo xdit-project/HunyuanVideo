@@ -402,6 +402,8 @@ class HunyuanVideoSampler(Inference):
         )
 
         self.default_negative_prompt = NEGATIVE_PROMPT
+        if self.parallel_args['ulysses_degree'] > 1 or self.parallel_args['ring_degree'] > 1:
+            parallelize_transformer(self.pipeline)
 
     def load_diffusion_pipeline(
         self,
@@ -521,12 +523,6 @@ class HunyuanVideoSampler(Inference):
                 num_images_per_prompt (int): The number of images per prompt. Default is 1.
                 infer_steps (int): The number of inference steps. Default is 100.
         """
-        if self.parallel_args['ulysses_degree'] > 1 or self.parallel_args['ring_degree'] > 1:
-            assert seed is not None, \
-                "You have to set a seed in the distributed environment, please rerun with --seed <your-seed>."
-
-            parallelize_transformer(self.pipeline)
-
         out_dict = dict()
 
         # ========================================================================
