@@ -43,6 +43,7 @@
 </div>
 
 ## 🔥🔥🔥 更新!!
+* 2024年12月17日: 🤗 HunyuanVideo已经集成到[Diffusers](https://huggingface.co/docs/diffusers/main/api/pipelines/hunyuan_video)中。
 * 2024年12月03日: 🚀 开源 HunyuanVideo 多卡并行推理代码，由[xDiT](https://github.com/xdit-project/xDiT)提供。
 * 2024年12月03日: 🤗 开源 HunyuanVideo 文生视频的推理代码和模型权重。
 
