@@ -54,9 +54,9 @@
   - [x] 模型权重 
   - [x] 多GPU序列并行推理（GPU 越多，推理速度越快）
   - [x] Web Demo (Gradio) 
+  - [x] Diffusers 
   - [ ] Penguin Video 基准测试集 
   - [ ] ComfyUI
-  - [ ] Diffusers 
   - [ ] 多GPU PipeFusion并行推理 (更低显存需求)
 - HunyuanVideo (图生视频模型)
   - [ ] 推理代码 
