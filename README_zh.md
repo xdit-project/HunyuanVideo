@@ -437,6 +437,8 @@ python3 sample_video.py \
 
 - ComfyUI (支持F8推理和Video2Video生成): [ComfyUI-HunyuanVideoWrapper](https://github.com/kijai/ComfyUI-HunyuanVideoWrapper) by [Kijai](https://github.com/kijai)
 
+- FastVideo (一致性蒸馏模型): [FastVideo](https://github.com/hao-ai-lab/FastVideo) by [Hao AI Lab](https://hao-ai-lab.github.io/)
+
 
 
 ## 致谢

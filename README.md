@@ -425,7 +425,7 @@ python3 sample_video.py \
     --use-fp8 \
     --save-path ./results
 ```
-  
+
 ## 🔗 BibTeX
 If you find [HunyuanVideo](https://arxiv.org/abs/2412.03603) useful for your research and applications, please cite using this BibTeX:
 
@@ -447,6 +447,8 @@ If you find [HunyuanVideo](https://arxiv.org/abs/2412.03603) useful for your res
 If you develop/use HunyuanVideo in your projects, welcome to let us know.
 
 - ComfyUI (with support for F8 Inference and Video2Video Generation): [ComfyUI-HunyuanVideoWrapper](https://github.com/kijai/ComfyUI-HunyuanVideoWrapper) by [Kijai](https://github.com/kijai)
+
+- FastVideo (consistency distilled model): [FastVideo](https://github.com/hao-ai-lab/FastVideo) by [Hao AI Lab](https://hao-ai-lab.github.io/)
 
 
 
