@@ -45,7 +45,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 
 
 ## 🔥🔥🔥 News!!
-* Dec 18, 2024: 🏃‍♂️ We release the fp8 model weights of HunyuanVideo to save more GPU memory.
+* Dec 18, 2024: 🏃‍♂️ We release the [FP8 model weights](https://huggingface.co/tencent/HunyuanVideo/blob/main/hunyuan-video-t2v-720p/transformers/mp_rank_00_model_states_fp8.pt) of HunyuanVideo to save more GPU memory.
 * Dec 17, 2024: 🤗 HunyuanVideo has been integrated into [Diffusers](https://huggingface.co/docs/diffusers/main/api/pipelines/hunyuan_video).
 * Dec 7, 2024: 🚀 We release the parallel inference code for HunyuanVideo powered by [xDiT](https://github.com/xdit-project/xDiT).
 * Dec 3, 2024: 👋 We release the inference code and model weights of HunyuanVideo.
