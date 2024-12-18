@@ -52,7 +52,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 
 
 
-## 🧩 Projects that use HunyuanVideo
+## 🧩 Community Contributions
 
 If you develop/use HunyuanVideo in your projects, welcome to let us know.
 - ComfyUI (with support for F8 Inference and Video2Video Generation): [ComfyUI-HunyuanVideoWrapper](https://github.com/kijai/ComfyUI-HunyuanVideoWrapper) by [Kijai](https://github.com/kijai)

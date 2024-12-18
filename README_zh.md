@@ -53,7 +53,7 @@
 
 
 
-## 🧩 使用 HunyuanVideo 的项目
+## 🧩 社区贡献
 
 如果您的项目中有开发或使用 HunyuanVideo，欢迎告知我们。
 
