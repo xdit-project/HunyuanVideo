@@ -1,6 +1,6 @@
 #!/bin/bash
 # Description: This script demonstrates how to inference a video based on HunyuanVideo model
-DIT_CKPT_PATH=xxxxxxxx/xxxxxxx_model_states_fp8.pt
+DIT_CKPT_PATH={PATH_TO}/{MODEL_NAME}_model_states_fp8.pt
 
 python3 sample_video.py \
     --dit-weight ${DIT_CKPT_PATH} \
