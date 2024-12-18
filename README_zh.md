@@ -57,7 +57,7 @@
 
 如果您的项目中有开发或使用 HunyuanVideo，欢迎告知我们。
 
-- ComfyUI (支持F8推理和Video2Video生成): [ComfyUI-HunyuanVideoWrapper](https://github.com/kijai/ComfyUI-HunyuanVideoWrapper) by [Kijai](https://github.com/kijai)
+- ComfyUI (支持V2V和IP2V生成): [ComfyUI-HunyuanVideoWrapper](https://github.com/kijai/ComfyUI-HunyuanVideoWrapper) by [Kijai](https://github.com/kijai)
 
 - FastVideo (一致性蒸馏模型): [FastVideo](https://github.com/hao-ai-lab/FastVideo) by [Hao AI Lab](https://hao-ai-lab.github.io/)
 

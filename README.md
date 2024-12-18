@@ -55,8 +55,8 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 ## 🧩 Community Contributions
 
 If you develop/use HunyuanVideo in your projects, welcome to let us know.
-- ComfyUI (with support for F8 Inference and Video2Video Generation): [ComfyUI-HunyuanVideoWrapper](https://github.com/kijai/ComfyUI-HunyuanVideoWrapper) by [Kijai](https://github.com/kijai)
-- FastVideo (consistency distilled model): [FastVideo](https://github.com/hao-ai-lab/FastVideo) by [Hao AI Lab](https://hao-ai-lab.github.io/)
+- ComfyUI (V2V and IP2V Generation): [ComfyUI-HunyuanVideoWrapper](https://github.com/kijai/ComfyUI-HunyuanVideoWrapper) by [Kijai](https://github.com/kijai)
+- FastVideo (Consistency Distilled Model): [FastVideo](https://github.com/hao-ai-lab/FastVideo) by [Hao AI Lab](https://hao-ai-lab.github.io/)
 
 
 
