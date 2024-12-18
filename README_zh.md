@@ -390,7 +390,7 @@ torchrun --nproc_per_node=8 sample_video_parallel.py \
 
 ## 🚀   FP8 Inference
 
-使用FP8量化后的HunyuanVideo模型能够帮您节省大概10GB显存。
+使用FP8量化后的HunyuanVideo模型能够帮您节省大概10GB显存。 使用前需要从 Huggingface 下载[FP8权重](https://huggingface.co/tencent/HunyuanVideo/blob/main/hunyuan-video-t2v-720p/transformers/mp_rank_00_model_states_fp8.pt)和每层量化权重的[scale参数](https://huggingface.co/tencent/HunyuanVideo/blob/main/hunyuan-video-t2v-720p/transformers/mp_rank_00_model_states_fp8_map.pt).
 
 ### Using Command Line
 

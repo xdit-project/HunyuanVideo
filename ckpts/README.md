@@ -7,6 +7,9 @@ HunyuanVideo
   │  ├──README.md
   │  ├──hunyuan-video-t2v-720p
   │  │  ├──transformers
+  │  │  │  ├──mp_rank_00_model_states.pt
+  │  │  │  ├──mp_rank_00_model_states_fp8.pt
+  │  │  │  ├──mp_rank_00_model_states_fp8_map.pt
   ├  │  ├──vae
   │  ├──text_encoder
   │  ├──text_encoder_2

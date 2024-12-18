@@ -400,7 +400,7 @@ You can change the `--ulysses-degree` and `--ring-degree` to control the paralle
 
 ## 🚀  FP8 Inference
 
-Using HunyuanVideo with FP8 quantized weights, which saves about 10GB of GPU memory.
+Using HunyuanVideo with FP8 quantized weights, which saves about 10GB of GPU memory. You can download the [weights](https://huggingface.co/tencent/HunyuanVideo/blob/main/hunyuan-video-t2v-720p/transformers/mp_rank_00_model_states_fp8.pt) and [weight scales](https://huggingface.co/tencent/HunyuanVideo/blob/main/hunyuan-video-t2v-720p/transformers/mp_rank_00_model_states_fp8_map.pt) from Huggingface.
 
 ### Using Command Line
 
