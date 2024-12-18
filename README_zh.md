@@ -58,6 +58,7 @@
   - [x] 多GPU序列并行推理（GPU 越多，推理速度越快）
   - [x] Web Demo (Gradio) 
   - [x] Diffusers 
+  - [x] FP8 量化版本
   - [ ] Penguin Video 基准测试集 
   - [ ] ComfyUI
   - [ ] 多GPU PipeFusion并行推理 (更低显存需求)

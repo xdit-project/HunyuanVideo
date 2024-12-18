@@ -58,6 +58,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
   - [x] Multi-gpus Sequence Parallel inference (Faster inference speed on more gpus)
   - [x] Web Demo (Gradio)
   - [x] Diffusers 
+  - [x] FP8 Quantified weight
   - [ ] Penguin Video Benchmark
   - [ ] ComfyUI
   - [ ] Multi-gpus PipeFusion inference (Low memory requirements)
