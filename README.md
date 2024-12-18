@@ -15,11 +15,13 @@
 </div>
 <div align="center">
   <a href="https://arxiv.org/abs/2412.03603"><img src="https://img.shields.io/static/v1?label=Tech Report&message=Arxiv&color=red"></a> &ensp;
-  <a href="https://aivideo.hunyuan.tencent.com/hunyuanvideo.pdf"><img src="https://img.shields.io/static/v1?label=Tech Report&message=High Quality Version (~350M)&color=red"></a>
+  <a href="https://aivideo.hunyuan.tencent.com/hunyuanvideo.pdf"><img src="https://img.shields.io/static/v1?label=Tech Report&message=High-Quality Version (~350M)&color=red"></a>
 </div>
 <div align="center">
   <a href="https://huggingface.co/tencent/HunyuanVideo"><img src="https://img.shields.io/static/v1?label=HunyuanVideo&message=HuggingFace&color=yellow"></a> &ensp;
+  <a href="https://huggingface.co/docs/diffusers/main/api/pipelines/hunyuan_video"><img src="https://img.shields.io/static/v1?label=HunyuanVideo&message=Diffusers&color=yellow"></a> &ensp;
   <a href="https://huggingface.co/tencent/HunyuanVideo-PromptRewrite"><img src="https://img.shields.io/static/v1?label=HunyuanVideo-PromptRewrite&message=HuggingFace&color=yellow"></a>
+
 
  [![Replicate](https://replicate.com/zsxkib/hunyuan-video/badge)](https://replicate.com/zsxkib/hunyuan-video)
 </div>
@@ -43,6 +45,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 
 
 ## 🔥🔥🔥 News!!
+* Dec 17, 2024: 🤗 HunyuanVideo has been integrated into [Diffusers](https://huggingface.co/docs/diffusers/main/api/pipelines/hunyuan_video).
 * Dec 7, 2024: 🚀 We release the parallel inference code for HunyuanVideo powered by [xDiT](https://github.com/xdit-project/xDiT).
 * Dec 3, 2024: 🤗 We release the inference code and model weights of HunyuanVideo.
 
@@ -53,7 +56,7 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
   - [x] Checkpoints
   - [x] Multi-gpus Sequence Parallel inference (Faster inference speed on more gpus)
   - [x] Web Demo (Gradio)
-  - [ ] Diffusers 
+  - [x] Diffusers 
   - [ ] Penguin Video Benchmark
   - [ ] ComfyUI
   - [ ] Multi-gpus PipeFusion inference (Low memory requirements)
