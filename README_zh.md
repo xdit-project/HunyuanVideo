@@ -15,11 +15,13 @@
 </div>
 <div align="center">
   <a href="https://arxiv.org/abs/2412.03603"><img src="https://img.shields.io/static/v1?label=Tech Report&message=Arxiv&color=red"></a> &ensp;
-  <a href="https://aivideo.hunyuan.tencent.com/hunyuanvideo.pdf"><img src="https://img.shields.io/static/v1?label=Tech Report&message=High Quality Version (~350M)&color=red"></a>
+  <a href="https://aivideo.hunyuan.tencent.com/hunyuanvideo.pdf"><img src="https://img.shields.io/static/v1?label=Tech Report&message=High-Quality Version (~350M)&color=red"></a>
 </div>
 <div align="center">
   <a href="https://huggingface.co/tencent/HunyuanVideo"><img src="https://img.shields.io/static/v1?label=HunyuanVideo&message=HuggingFace&color=yellow"></a> &ensp;
+  <a href="https://huggingface.co/docs/diffusers/main/api/pipelines/hunyuan_video"><img src="https://img.shields.io/static/v1?label=HunyuanVideo&message=Diffusers&color=yellow"></a> &ensp;
   <a href="https://huggingface.co/tencent/HunyuanVideo-PromptRewrite"><img src="https://img.shields.io/static/v1?label=HunyuanVideo-PromptRewrite&message=HuggingFace&color=yellow"></a>
+
 
  [![Replicate](https://replicate.com/zsxkib/hunyuan-video/badge)](https://replicate.com/zsxkib/hunyuan-video)
 </div>
@@ -43,6 +45,7 @@
 </div>
 
 ## 🔥🔥🔥 更新!!
+* 2024年12月17日: 🤗 HunyuanVideo已经集成到[Diffusers](https://huggingface.co/docs/diffusers/main/api/pipelines/hunyuan_video)中。
 * 2024年12月03日: 🚀 开源 HunyuanVideo 多卡并行推理代码，由[xDiT](https://github.com/xdit-project/xDiT)提供。
 * 2024年12月03日: 🤗 开源 HunyuanVideo 文生视频的推理代码和模型权重。
 
@@ -53,9 +56,9 @@
   - [x] 模型权重 
   - [x] 多GPU序列并行推理（GPU 越多，推理速度越快）
   - [x] Web Demo (Gradio) 
+  - [x] Diffusers 
   - [ ] Penguin Video 基准测试集 
   - [ ] ComfyUI
-  - [ ] Diffusers 
   - [ ] 多GPU PipeFusion并行推理 (更低显存需求)
 - HunyuanVideo (图生视频模型)
   - [ ] 推理代码 
