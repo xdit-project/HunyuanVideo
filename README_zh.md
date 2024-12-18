@@ -86,6 +86,7 @@
 - [HunyuanVideo: A Systematic Framework For Large Video Generation Model](#hunyuanvideo-a-systematic-framework-for-large-video-generation-model)
   - [🎥 作品展示](#-作品展示)
   - [🔥🔥🔥 更新!!](#-更新)
+  - [🧩 社区贡献](#-社区贡献)
   - [📑 开源计划](#-开源计划)
   - [目录](#目录)
   - [**摘要**](#摘要)
@@ -109,7 +110,6 @@
   - [🚀   FP8 Inference](#---fp8-inference)
     - [Using Command Line](#using-command-line)
   - [🔗 BibTeX](#-bibtex)
-  - [🧩 使用 HunyuanVideo 的项目](#-使用-hunyuanvideo-的项目)
   - [致谢](#致谢)
   - [Star 趋势](#star-趋势)
 ---

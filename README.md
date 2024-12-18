@@ -83,7 +83,7 @@ If you develop/use HunyuanVideo in your projects, welcome to let us know.
 - [HunyuanVideo: A Systematic Framework For Large Video Generation Model](#hunyuanvideo-a-systematic-framework-for-large-video-generation-model)
   - [🎥 Demo](#-demo)
   - [🔥🔥🔥 News!!](#-news)
-  - [🧩 Projects that use HunyuanVideo](#-projects-that-use-hunyuanvideo)
+  - [🧩 Community Contributions](#-community-contributions)
   - [📑 Open-source Plan](#-open-source-plan)
   - [Contents](#contents)
   - [**Abstract**](#abstract)
