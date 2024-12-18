@@ -381,6 +381,33 @@ torchrun --nproc_per_node=8 sample_video_parallel.py \
 </table>
 </p>
 
+## 🚀   FP8 Inference
+
+使用FP8量化后的HunyuanVideo模型能够帮您节省大概10GB显存。
+
+### Using Command Line
+
+这里，您必须显示地指定FP8的权重路径。例如，可用如下命令使用FP8模型推理
+
+```bash
+cd HunyuanVideo
+
+DIT_CKPT_PATH={PATH_TO_FP8_WEIGHTS}/{WEIGHT_NAME}_fp8.pt
+
+python3 sample_video.py \
+    --dit-weight ${DIT_CKPT_PATH} \
+    --video-size 1280 720 \
+    --video-length 129 \
+    --infer-steps 50 \
+    --prompt "A cat walks on the grass, realistic style." \
+    --seed 42 \
+    --embedded-cfg-scale 6.0 \
+    --flow-shift 7.0 \
+    --flow-reverse \
+    --use-cpu-offload \
+    --use-fp8 \
+    --save-path ./results
+```
 
 ## 🔗 BibTeX
 如果您认为 [HunyuanVideo](https://arxiv.org/abs/2412.03603) 给您的研究和应用带来了一些帮助，可以通过下面的方式来引用:
