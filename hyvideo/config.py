@@ -377,6 +377,11 @@ def add_parallel_args(parser: argparse.ArgumentParser):
         default=1,
         help="Ulysses degree.",
     )
+    group.add_argument(
+        "--use-fsdp",
+        action="store_true",
+        help="use FSDP.",
+    )
 
     return parser
 

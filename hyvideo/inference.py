@@ -9,6 +9,7 @@ from loguru import logger
 
 import torch
 import torch.distributed as dist
+from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
 from hyvideo.constants import PROMPT_TEMPLATE, NEGATIVE_PROMPT, PRECISION_TO_TYPE
 from hyvideo.vae import load_vae
 from hyvideo.modules import load_model
@@ -199,7 +200,11 @@ class Inference(object):
         )
         if args.use_fp8:
             convert_fp8_linear(model, args.dit_weight, original_dtype=PRECISION_TO_TYPE[args.precision])
-        model = model.to(device)
+
+        if args.use_fsdp:
+            model = FSDP(model, ignored_modules=[model.final_layer])
+        else:
+            model = model.to(device)
         model = Inference.load_state_dict(args, model, pretrained_model_path)
         model.eval()
 
