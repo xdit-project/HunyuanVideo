@@ -347,6 +347,12 @@ def add_inference_args(parser: argparse.ArgumentParser):
     )
 
     group.add_argument(
+        "--use-fp8",
+        action="store_true",
+        help="Enable use fp8 for inference acceleration."
+    )
+
+    group.add_argument(
         "--reproduce",
         action="store_true",
         help="Enable reproducibility by setting random seeds and deterministic algorithms.",
@@ -370,6 +376,11 @@ def add_parallel_args(parser: argparse.ArgumentParser):
         type=int,
         default=1,
         help="Ulysses degree.",
+    )
+    group.add_argument(
+        "--use-fsdp",
+        action="store_true",
+        help="use FSDP.",
     )
 
     return parser

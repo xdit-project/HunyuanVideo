@@ -46,12 +46,13 @@ def main():
     samples = outputs['samples']
     
     # Save samples
-    for i, sample in enumerate(samples):
-        sample = samples[i].unsqueeze(0)
-        time_flag = datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d-%H:%M:%S")
-        save_path = f"{save_path}/{time_flag}_seed{outputs['seeds'][i]}_{outputs['prompts'][i][:100].replace('/','')}.mp4"
-        save_videos_grid(sample, save_path, fps=24)
-        logger.info(f'Sample save to: {save_path}')
+    if 'LOCAL_RANK' not in os.environ or int(os.environ['LOCAL_RANK']) == 0:
+        for i, sample in enumerate(samples):
+            sample = samples[i].unsqueeze(0)
+            time_flag = datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d-%H:%M:%S")
+            save_path = f"{save_path}/{time_flag}_seed{outputs['seeds'][i]}_{outputs['prompts'][i][:100].replace('/','')}.mp4"
+            save_videos_grid(sample, save_path, fps=24)
+            logger.info(f'Sample save to: {save_path}')
 
 if __name__ == "__main__":
     main()

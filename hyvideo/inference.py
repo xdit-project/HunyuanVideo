@@ -9,12 +9,14 @@ from loguru import logger
 
 import torch
 import torch.distributed as dist
+from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
 from hyvideo.constants import PROMPT_TEMPLATE, NEGATIVE_PROMPT, PRECISION_TO_TYPE
 from hyvideo.vae import load_vae
 from hyvideo.modules import load_model
 from hyvideo.text_encoder import TextEncoder
 from hyvideo.utils.data_utils import align_to
 from hyvideo.modules.posemb_layers import get_nd_rotary_pos_embed
+from hyvideo.modules.fp8_optimization import convert_fp8_linear
 from hyvideo.diffusion.schedulers import FlowMatchDiscreteScheduler
 from hyvideo.diffusion.pipelines import HunyuanVideoPipeline
 
@@ -196,7 +198,13 @@ class Inference(object):
             out_channels=out_channels,
             factor_kwargs=factor_kwargs,
         )
-        model = model.to(device)
+        if args.use_fp8:
+            convert_fp8_linear(model, args.dit_weight, original_dtype=PRECISION_TO_TYPE[args.precision])
+
+        if args.use_fsdp:
+            model = FSDP(model, ignored_modules=[model.final_layer])
+        else:
+            model = model.to(device)
         model = Inference.load_state_dict(args, model, pretrained_model_path)
         model.eval()
 
@@ -402,6 +410,8 @@ class HunyuanVideoSampler(Inference):
         )
 
         self.default_negative_prompt = NEGATIVE_PROMPT
+        if self.parallel_args['ulysses_degree'] > 1 or self.parallel_args['ring_degree'] > 1:
+            parallelize_transformer(self.pipeline)
 
     def load_diffusion_pipeline(
         self,
@@ -521,12 +531,6 @@ class HunyuanVideoSampler(Inference):
                 num_images_per_prompt (int): The number of images per prompt. Default is 1.
                 infer_steps (int): The number of inference steps. Default is 100.
         """
-        if self.parallel_args['ulysses_degree'] > 1 or self.parallel_args['ring_degree'] > 1:
-            assert seed is not None, \
-                "You have to set a seed in the distributed environment, please rerun with --seed <your-seed>."
-
-            parallelize_transformer(self.pipeline)
-
         out_dict = dict()
 
         # ========================================================================
